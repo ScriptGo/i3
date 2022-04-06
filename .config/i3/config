@@ -46,16 +46,16 @@ hide_edge_borders          smart
 ### i3-gaps
 ################################################################################
 
-gaps inner 8
+gaps inner 10
 gaps outer 0
 
 smart_gaps    on
 smart_borders on
 
-gaps top    20
-gaps bottom 5
-gaps left   5
-gaps right  5
+gaps top    35
+gaps bottom 0
+gaps left   3
+gaps right  3
 
 # gaps horizontal 20
 # gaps vertical   20
