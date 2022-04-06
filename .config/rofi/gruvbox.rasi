@@ -1,0 +1,29 @@
+* {
+    active-bg: #458588;
+    active-fg: @fg;
+    normal-bg: @bg;
+    normal-fg: @fg;
+    urgent-bg: #fe8019;
+    urgent-fg: @fg;
+
+    alternate-active-bg: @bg;
+    alternate-active-fg: @fg;
+    alternate-normal-bg: @bg;
+    alternate-normal-fg: @fg;
+    alternate-urgent-bg: @bg;
+    alternate-urgent-fg: @fg;
+
+    selected-active-bg: #f9f5d7;
+    selected-active-fg: @fg;
+    selected-normal-bg: #d79921;
+    selected-normal-fg: @fg;
+    selected-urgent-bg: #b16286;
+    selected-urgent-fg: @fg;
+
+
+    bg: #282828;
+    fg: #ebdbb2;
+    background-color: @bg;
+    border-color: @bg;
+    spacing: 2;
+}

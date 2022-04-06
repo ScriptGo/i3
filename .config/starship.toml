@@ -1,0 +1,338 @@
+# Starship 扫描文件的超时时间（单位：毫秒）默认值: 30
+scan_timeout = 90
+# Startship 执行命令的超时时间（单位：毫秒）默认值: 500
+command_timeout = 1000
+# shell 提示符之间是否插入空行 默认值: true
+add_newline = true
+# 子提示符
+continuation_prompt = '[>>](bright-black) '
+
+
+# left prompt
+format = """$directory"""
+
+# right prompt
+right_format = """
+$character
+$conda
+$git_branch$git_commit$git_state$git_metrics$git_status
+$jobs
+$python
+$red
+$shell
+$status
+$cmd_duration
+$time
+"""
+
+[username]
+format = '[$user]($style) @ '
+style_root = 'red bold'
+style_user = 'yellow bold'
+show_always = true
+disabled = false
+
+[hostname]
+format = '[$hostname]($style) in '
+style = 'green dimmed bold'
+ssh_only = false
+trim_at = ''
+disabled = false
+
+[character]
+format = '$symbol '
+success_symbol = ''
+error_symbol = '[✗](bold red) '
+vicmd_symbol = '[V](bold green) '
+disabled = false
+
+[cmake]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '△ '
+style = 'bold blue'
+detect_extensions = []
+detect_files = [
+    'CMakeLists.txt',
+    'CMakeCache.txt',
+]
+detect_folders = []
+disabled = false
+
+[cmd_duration]
+format = 'took [$duration]($style) '
+style = 'yellow bold'
+min_time = 10
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 45000
+notification_timeout = ''
+disabled = false
+
+[conda]
+truncation_length = 1
+format = 'via [$symbol$environment]($style) '
+symbol = ' '
+style = 'green bold'
+ignore_base = true
+disabled = false
+
+[container]
+format = ' [$symbol \\ [$name \\ ]]($style) '
+symbol = '⬢'
+style = 'red bold dimmed'
+truncation_length = 0
+disabled = false
+
+[directory]
+format = '[$path]($style) [$read_only]($read_only_style) : '
+repo_root_format = '[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+style = 'cyan bold'
+truncate_to_repo = true
+read_only = ''
+read_only_style = 'red'
+truncation_symbol = ''
+home_symbol = '~'
+use_os_path_sep = true
+disabled = false
+
+[directory.substitutions]
+truncation_length = 3
+truncation_symbol = "…/"
+
+[docker_context]
+format = 'via [$symbol$context]($style) '
+symbol = ' '
+style = 'blue bold'
+only_with_files = true
+detect_extensions = []
+detect_files = [
+    'docker-compose.yml',
+    'docker-compose.yaml',
+    'Dockerfile',
+]
+detect_folders = []
+disabled = false
+
+[fill]
+style = 'bold black'
+symbol = '.'
+disabled = false
+
+[git_branch]
+format = 'on [$symbol$branch]($style)(:[$remote]($style)) '
+symbol = ' '
+style = 'bold purple'
+truncation_length = 9223372036854775807
+truncation_symbol = '…'
+only_attached = false
+always_show_remote = false
+disabled = false
+
+[git_commit]
+format = '[\($hash$tag\)]($style) '
+style = 'green bold'
+commit_hash_length = 7
+only_detached = true
+tag_symbol = ' 🏷  '
+tag_disabled = true
+disabled = false
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = 'bold yellow'
+rebase = 'REBASING'
+merge = 'MERGING'
+revert = 'REVERTING'
+cherry_pick = 'CHERRY-PICKING'
+bisect = 'BISECTING'
+am = 'AM'
+am_or_rebase = 'AM/REBASE'
+disabled = false
+
+[git_metrics]
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+added_style = 'bold green'
+deleted_style = 'bold red'
+only_nonzero_diffs = true
+disabled = true
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = 'red bold'
+stashed = '\$'
+ahead = '⇡'
+behind = '⇣'
+up_to_date = ''
+diverged = '⇕'
+conflicted = '='
+deleted = '✘'
+renamed = '»'
+modified = '!'
+staged = '+'
+untracked = '?'
+ignore_submodules = false
+disabled = false
+
+[golang]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'bold cyan'
+detect_extensions = ['go']
+detect_files = [
+    'go.mod',
+    'go.sum',
+    'glide.yaml',
+    'Gopkg.yml',
+    'Gopkg.lock',
+    '.go-version',
+]
+detect_folders = ['Godeps']
+disabled = false
+
+[jobs]
+symbol_threshold = 1
+number_threshold = 2
+format = '[$symbol$number]($style) '
+symbol = ' + '
+style = 'bold blue'
+disabled = false
+
+[localip]
+format = '[$localipv4]($style) '
+style = 'yellow bold'
+ssh_only = true
+disabled = true
+
+[lua]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '🌙 '
+style = 'bold blue'
+lua_binary = 'lua'
+detect_extensions = ['lua']
+detect_files = ['.lua-version']
+detect_folders = ['lua']
+disabled = false
+
+[nodejs]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'bold green'
+not_capable_style = 'bold red'
+detect_extensions = [
+    'js',
+    'mjs',
+    'cjs',
+    'ts',
+]
+detect_files = [
+    'package.json',
+    '.node-version',
+    '.nvmrc',
+]
+detect_folders = ['node_modules']
+disabled = false
+
+[package]
+format = '$all'
+symbol = ' '
+style = '208 bold'
+display_private = false
+disabled = false
+version_format = 'v${raw}'
+
+[python]
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'yellow bold'
+pyenv_version_name = false
+pyenv_prefix = 'pyenv '
+python_binary = ['python3']
+detect_extensions = ['py']
+detect_files = [
+    'requirements.txt',
+    '.python-version',
+    'pyproject.toml',
+    'Pipfile',
+    'tox.ini',
+    'setup.py',
+    '__init__.py',
+]
+detect_folders = []
+disabled = false
+
+[red]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '🔺 '
+style = 'red bold'
+detect_extensions = [
+    'red',
+    'reds',
+]
+detect_files = []
+detect_folders = []
+disabled = false
+
+[rust]
+format = 'via [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'bold red'
+detect_extensions = ['rs']
+detect_files = ['Cargo.toml']
+detect_folders = []
+disabled = false
+
+[shell]
+format = '[$indicator]($style) '
+bash_indicator = 'bsh'
+fish_indicator = 'fsh'
+zsh_indicator = 'zsh'
+powershell_indicator = 'psh'
+ion_indicator = 'ion'
+elvish_indicator = 'esh'
+tcsh_indicator = 'tsh'
+nu_indicator = 'nu'
+xonsh_indicator = 'xsh'
+cmd_indicator = 'cmd'
+unknown_indicator = ''
+style = 'white bold'
+disabled = true
+
+[status]
+format = '[$symbol$status]($style) '
+symbol = '✖'
+style = 'bold red'
+success_symbol = '✔️'
+not_executable_symbol = '🚫'
+not_found_symbol = '🔍'
+sigint_symbol = '🧱'
+signal_symbol = '⚡'
+map_symbol = true
+recognize_signal_code = true
+pipestatus = false
+pipestatus_separator = '|'
+pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
+disabled = false
+
+[sudo]
+format = '[as $symbol]($style)'
+symbol = '🧙 '
+style = 'bold blue'
+allow_windows = false
+disabled = true
+
+[time]
+format = 'at [$time]($style) '
+style = 'bold yellow'
+use_12hr = false
+disabled = false
+utc_time_offset = 'local'
+time_range = '-'
+
+[custom]

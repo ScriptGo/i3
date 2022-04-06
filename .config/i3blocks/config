@@ -1,0 +1,28 @@
+align=center
+separator=false
+separator_block_width=15
+markup=pango
+
+[moc]
+command=./moc
+interval=1
+label=🎵 
+color=#FFFFFF
+
+[time]
+command=date '+%P %H:%M'
+interval=1
+label=🕛 
+color=
+
+[date]
+command=date '+%A %m/%d'
+interval=60
+label=📅 
+color=
+
+[volume]
+command=./volume
+interval=once
+signal=10
+color=

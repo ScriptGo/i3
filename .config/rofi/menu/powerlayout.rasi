@@ -1,0 +1,53 @@
+
+* {
+  /* General */
+  text-font:                            "FuraCode Nerd Font Regular 14";
+  icon-font:                            "Material Design Icons 14";
+
+
+
+  fixed-num-lines:                true;
+  click-to-exit:                  true;
+  background-color: #D9D9D9;
+  text-color: #263640;
+  font: @icon-font;
+  border: 0px;
+  padding: 5;
+}
+
+#window {
+  width:  32%;
+  height: 10%;
+  anchor: center;
+  location:center;
+  border: 0px 0px 0px 0px;
+  border-radius: 15px 15px 15px 15px;
+  border-color: #263640;
+}
+
+
+#horibox {
+  children: [ listview];
+}
+
+#listview {
+  layout: horizontal;
+}
+
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}
+
+#inputbar {
+  enabled: false;
+}
+
+#element {
+  font: @icon-font;
+  padding: 20px 0px 15px -10px;
+ 
+}
+
+
+

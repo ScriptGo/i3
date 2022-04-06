@@ -1,0 +1,109 @@
+conky.config = {
+------------------------------------------------------------------------------------------------------------------------窗口
+own_window = true,
+own_window_type = 'override',
+own_window_class = 'Conky',
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+own_window_argb_visual = true,
+own_window_transparent = true,
+background = true,    --是否嵌入桌面
+double_buffer = true, --双缓冲绘图
+
+------------------------------------------------------------------------------------------------------------------------边框
+draw_borders = false,  --是否绘制窗口边框
+draw_outline = false,  --是否绘制字体轮廓线
+draw_shades = false,   --是否绘制字体阴影
+
+draw_graph_borders = false,   --是否绘制网速cpu等外框
+-- show_graph_scale = false,
+-- show_graph_range = false,
+-- default_bar_size 60 8 进度条尺寸
+
+no_buffers = true,
+out_to_console = false,
+out_to_stderr = false,
+stippled_borders = 0,
+
+------------------------------------------------------------------------------------------------------------------------位置大小
+alignment = 'top_right', --窗口所在屏幕位置
+gap_x = 20,              --窗口离屏幕左边或右边的距离
+gap_y = 36,              --窗口离屏幕顶部或底部的距离
+maximum_width = 170,     --窗口最大宽度
+--minimum_size
+------------------------------------------------------------------------------------------------------------------------字体
+font = 'Sarasa Mono:size=10',
+uppercase = false,
+use_spacer = 'none',
+
+text_buffer_size = 2048,
+use_xft = true,
+override_utf8_locale = true,
+
+------------------------------------------------------------------------------------------------------------------------颜色
+color0 = 'FF00FF', --洋红色
+color1 = '7CFC00', --草坪绿
+color2 = 'FFFF00', --纯黄色
+color3 = '0000FF', --纯蓝色
+color4 = '00FF00', --酸橙色
+color5 = 'FFFFFF', --纯白色
+color6 = '000000', --纯黑色
+color7 = 'FF0000', --纯红色
+------------------------------------------------------------------------------------------------------------------------其他
+cpu_avg_samples = 2,
+net_avg_samples = 2,
+format_human_readable = true,
+extra_newline = false,
+update_interval = 1.0,
+imlib_cache_size = 0,
+
+}
+
+--参数voffset用于调节上下位置；参数goto用于调节左右位置；
+--参数alignr用于靠右边对齐。参数font和color要有结束配对，以免混乱
+
+
+conky.text = [[
+${color2}SYSTEM
+${color5}${hr}
+${color4}系统     : ${color0}${alignr}${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'}
+${color4}内核     : ${color0}${alignr}$kernel
+${color4}开机     : ${color0}${alignr}$uptime
+${color5}${hr}
+
+${color2}CPU${alignr}${color7}$CPU%
+${color5}${hr}
+${color1}${top name 1}${alignr}${color0}${top cpu 1}%
+${color1}${top name 2}${alignr}${color0}${top cpu 2}%
+${color1}${top name 3}${alignr}${color0}${top cpu 3}%
+${color1}${top name 4}${alignr}${color0}${top cpu 4}%
+${color1}${top name 5}${alignr}${color0}${top cpu 5}%
+${color1}${top name 6}${alignr}${color0}${top cpu 6}%
+${color5}${hr}
+
+${color2}RAM ${alignr}${color7}${mem}
+${color5}${hr}
+${color0}${top_mem name 1} ${alignr}${color4}${top_mem mem_res 1}
+${color0}${top_mem name 2} ${alignr}${color4}${top_mem mem_res 2}
+${color0}${top_mem name 3} ${alignr}${color4}${top_mem mem_res 3}
+${color0}${top_mem name 4} ${alignr}${color4}${top_mem mem_res 4}
+${color0}${top_mem name 5} ${alignr}${color4}${top_mem mem_res 5}
+${color0}${top_mem name 6} ${alignr}${color4}${top_mem mem_res 6}
+${color0}${top_mem name 7} ${alignr}${color4}${top_mem mem_res 7}
+${color0}${top_mem name 8} ${alignr}${color4}${top_mem mem_res 8}
+${color0}${top_mem name 9} ${alignr}${color4}${top_mem mem_res 9}
+${color5}${hr}
+
+${color2}NET
+${color5}${hr}
+${color1}SSID  : ${color2}${alignr}${wireless_essid wlp3s0}
+${color1}IP    : ${color2}${alignr}${addrs wlp3s0}
+
+${color7}上传  :  ${color0}${upspeed wlp3s0}/s   ${color7}${alignr}${upspeedgraph wlp3s0 10,55}
+
+${color2}下载  :  ${color4}${downspeed wlp3s0}/s ${color4}${alignr}${downspeedgraph wlp3s0 10,55}
+
+${color7}累计上传   :   ${alignr}${color0}${totalup wlp3s0}
+${color2}累计下载   :   ${alignr}${color4}${totaldown wlp3s0}
+
+]]

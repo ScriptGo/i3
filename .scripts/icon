@@ -1,0 +1,64 @@
+JetBrainsMono Nerd Font Mono
+
+        
+
+  
+    󰅭 
+  者 者  
+ 
+ 󰤧 󰤭
+ 
+
+ 
+ﱘ   
+  󰎆
+ 
+   
+ 󰊠
+
+" 绿色 或 蓝色
+" 
+" 白色
+"
+"黄色
+"
+"
+" 红色
+
+
+
+# move between monitors 
+bindsym $mod+o move workspace to output right
+
+# focus monitors
+bindsym $mod+Shift+j focus output left
+bindsym $mod+Shift+k focus output right
+
+3. Brightness module is not working
+
+如果亮度模块无法在您的系统上运行，请编辑modules.ini和bars.ini文件并...
+
+如果您使用的是 Intel GPU，请使用type = internal/xbacklightand 。
+card = intel_backlight
+type = internal/backlight如果您使用的是 AMD 或 Nvidia GPU，请使用。
+查看内部/sys/class/backlight/并找到您系统的卡名称。（例如card = amdgpu_bl0：）
+
+
+#mod+printscrn: take full screenshot, place in ~/img/scrot, copy to clipboard
+bindsym --release $mod+Print exec "scrot 'scrot-%Y-%m-%d_%h-%m-%s_$wx$h.png' -e 'mv $f ~/img/scrot/ && xclip -t image/png ~/img/scrot/$f -sel clip'"
+
+#mod+shift+printscrn: take selection screenshot, place in ~/img/scrot, copy to clipboard
+bindsym --release $mod+Shift+Print exec "scrot --select 'scrot-%Y-%m-%d_%h-%m-%s_$wx$h_snip.png' -e 'mv $f ~/img/scrot/ && xclip -t image/png ~/img/scrot/$f -sel clip'"
+
+bindsym $mod+Shift+s exec flameshot gui
+
+1. Dropping unmatched character
+
+如果你正面临这个问题...
+
+确保您的系统上安装了正确的字体。
+在大多数系统上，位图字体默认禁用，通过 -
+$ sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf
+这里要注意的是，这里的icon图标和字母abc，还有汉字都是属于unicode(char)字符。
+所以，在使用material icons的时候，可能需要使用gucharmap获取图标字符。
+

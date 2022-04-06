@@ -1,0 +1,248 @@
+configuration {
+    font:                           "FiraCode 14";
+    show-icons:                     true;
+    icon-theme:                     "MacBuntu-Mine-Y";
+    fixed-num-lines:                true;
+    lines:                          12;
+    columns:                        1;
+    sidebar-mode:                   true;
+    hide-scrollbar:                 true;
+    scroll-method:                     1;
+    combi-hide-mode-prefix:         true;
+    click-to-exit:                  true;
+    show-match:                     false;
+
+
+    modi:                           "window,run,drun,ssh,filebrowser,keys";
+    combi-modi:                     "window,run,drun,ssh,filebrowser,keys";
+    display-window:                 "";
+    display-windowcd:               "";
+    display-run:                    "";
+    display-ssh:                    "📡";
+    display-drun:                   "🔍";
+    display-combi:                  " ";
+    display-keys:                   "";
+    display-filebrowser:            "";
+    drun-display-format:            "{name}";
+    window-format:                  "[ {w} ] ·· {c} ·· {t}";
+
+/*	location: 0;*/
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+
+/*	terminal: "rofi-sensible-terminal";*/
+/*	ssh-client: "ssh";*/
+/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
+/*	run-command: "{cmd}";*/
+/*	run-list-command: "";*/
+/*	run-shell-command: "{terminal} -e {cmd}";*/
+/*	window-command: "wmctrl -i -R {window}";*/
+/*	window-match-fields: "all";*/
+/*	drun-match-fields: "name,generic,exec,categories,keywords";*/
+/*	drun-categories: ;*/
+/*	drun-show-actions: false;*/
+/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+/*	drun-url-launcher: "xdg-open";*/
+/*	disable-history: false;*/
+/*	ignored-prefixes: "";*/
+/*	sort: false;*/
+/*	sorting-method: "normal";*/
+/*	case-sensitive: false;*/
+/*	cycle: true;*/
+/*	hover-select: false;*/
+/*	eh: 1;*/
+/*	auto-select: false;*/
+/*	parse-hosts: false;*/
+/*	parse-known-hosts: true;*/
+/*	combi-modi: "window,run";*/
+/*	matching: "normal";*/
+/*	tokenize: true;*/
+/*	m: "-5";*/
+/*	filter: ;*/
+/*	dpi: -1;*/
+/*	threads: 0;*/
+/*	click-to-exit: true;*/
+/*	max-history-size: 25;*/
+/*	combi-hide-mode-prefix: false;*/
+/*	matching-negate-char: '-' /* unsupported */;*/
+/*	cache-dir: ;*/
+/*	window-thumbnail: false;*/
+/*	drun-use-desktop-cache: false;*/
+/*	drun-reload-desktop-cache: false;*/
+/*	normalize-match: false;*/
+/*	steal-focus: false;*/
+/*	application-fallback-icon: ;*/
+/*	pid: "/run/user/1002/rofi.pid";*/
+}
+
+window {
+    background-color:               @bg;
+    border: 2;
+    border-radius: 0px;
+    padding: 10;
+    width:                          30%;
+    location:                       center;
+    anchor:                         center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+mainbox {
+    border: 0;
+    padding: 13;
+    border-radius: 10px;
+}
+
+message {
+    border: 2px 0px 0px;
+    border-color: @border-color;
+    padding: 1px;
+}
+
+textbox {
+    text-color: @fg;
+}
+
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    background-color: transparent;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: " : ";
+    margin: 0px 0.3em 0em 0em;
+    text-color: @normal-fg;
+}
+
+listview {
+    fixed-height: 0;
+    border: 2px 0px 0px;
+    border-color: @border-color;
+    spacing: 2px;
+    scrollbar: true;
+    padding: 10px 0px 0px;
+    background-color: transparent;
+}
+
+element {
+    border: 0;
+    border-radius: 15px;
+    padding: 3 0 3 4;
+}
+
+element-text {
+}
+
+element-icon {
+    size:                           24px;
+    border:                         0px;
+}
+
+element.normal.normal {
+    background-color: @normal-bg;
+    text-color: @normal-fg;
+}
+
+element.normal.urgent {
+    background-color: @urgent-bg;
+    text-color: @urgent-fg;
+}
+
+element.normal.active {
+    background-color: @active-bg;
+    text-color: @active-fg;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-bg;
+    text-color: @selected-normal-fg;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-bg;
+    text-color: @selected-urgent-fg;
+}
+
+element.selected.active {
+    background-color: @selected-active-bg;
+    text-color: @selected-active-fg;
+}
+
+element.alternate.normal {
+    background-color: @alternate-normal-bg;
+    text-color: @alternate-normal-fg;
+}
+
+element.alternate.urgent {
+    background-color: @alternate-urgent-bg;
+    text-color: @alternate-urgent-fg;
+}
+
+element.alternate.active {
+    background-color: @alternate-active-bg;
+    text-color: @alternate-active-fg;
+}
+
+scrollbar {
+    width: 4px;
+    border: 0;
+    handle-width: 0px;
+    padding: 0;
+}
+
+sidebar {
+    border: 2px 0px 0px;
+    border-color: @border-color;
+    border-radius: 20px;
+}
+
+button {
+    text-color: @normal-fg;
+    margin: 4px;
+    padding: 4px;
+    border: 0px;
+    border-radius: 15px;
+}
+
+button.selected {
+    background-color: @selected-normal-bg;
+    text-color: @selected-normal-fg;
+    border:       2px;
+    border-radius: 8px;
+}
+
+inputbar {
+    spacing: 0;
+    text-color: @normal-fg;
+    padding: 2px;
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    border: 2;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+case-indicator {
+    spacing: 0;
+    text-color: @normal-fg;
+}
+
+entry {
+    spacing: 0;
+    text-color: @normal-fg;
+}
+
+prompt {
+    spacing: 0;
+    border:     2;
+    text-color: @normal-fg;
+    background-color: transparent;
+}
+
+filebrowser {
+    directory: ".";
+    directories-first:   true;
+    sorting-method:    "name";
+}
+
+@import "~/.config/rofi/gruvbox.rasi"

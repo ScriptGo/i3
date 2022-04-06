@@ -1,0 +1,136 @@
+
+configuration {
+	font:							"FantasqueSansMono Nerd Font 12";
+    show-icons:                     false;
+	icon-theme: 					"Papirus";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+	sidebar-mode: 					false;
+
+  /* General */
+  text-font:                      "FuraCode Nerd Font Regular 14";
+  icon-font:                      "Material Design Icons 14";
+
+  menu-window-padding:            4px 4px;
+  menu-element-padding:           20px 0px 15px -10px;
+  fixed-num-lines:                true;
+  click-to-exit:                  true;
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+  border: 0px;
+  padding: 5;
+}
+
+window {
+  width:  35%;
+  height: 20%;
+  anchor: center;
+  location:center;
+  x-offset: 0;
+  y-offset: 0;
+  border: 2px;
+  border-radius: 30px;
+  border-color: @background;
+  background-color:               @background;
+  transparency:                   "real";
+  text-color:                     @foreground;
+
+}
+
+prompt {
+    enabled: 						true;
+    padding:                        0%;
+	background-color: 				@background-alt;
+	text-color: 					@foreground;
+}
+
+textbox-prompt-colon {
+	expand: 						false;
+	str: 							"System |";
+	background-color: 				@background-alt;
+	text-color: 					@foreground;
+    padding:                        0.5% 0.5% 0.5% 0%;
+}
+
+inputbar {
+	children: 						[ textbox-prompt-colon, prompt ];
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    expand:                         false;
+    border:                  		0%;
+    border-radius:                  100%;
+    border-color:                  	@border;
+    margin:                         0%;
+    padding:                        0.5%;
+    position:                       center;
+}
+
+mainbox {
+    background-color:               @background;
+    children:                       [ listview, inputbar ];
+    spacing:                        3.5%;
+    padding:                        4% 0% 0% 2%;
+}
+
+listview {
+  layout:                         horizontal;
+  background-color:               @background;
+  margin:                         0% 0% 0% 0%;
+  spacing:                        0%;
+  cycle:                          true;
+  dynamic:                        true;
+}
+
+element {
+    font:                           @icon-font;
+    padding:                        @menu-element-padding;
+    background-color:               @background-light;
+    text-color:                     @foreground;
+    orientation:                    horizontal;
+    border-radius:                  10%;
+}
+
+element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
+	font:							"feather 12";
+    expand:                         true;
+    horizontal-align:               0.5;
+    margin:                         0% 0% 0% 0%;
+
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+    border-radius:                  0.2%;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+}
+
+element selected {
+    background-color:               @accent;
+    text-color:                     @background;
+    border:                  		0% 0.2% 0.2% 0%;
+    border-radius:                  10px;
+    border-color:                  	@border;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @foreground;
+}
+
+@import "~/.config/rofi/gruvbox.rasi"
+

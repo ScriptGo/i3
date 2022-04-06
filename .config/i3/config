@@ -1,0 +1,537 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+################################################################################
+
+# font for window titles and bar
+font pango: JetBrainsMono Nerd Font 14, Sarasa SC 12
+
+################################################################################
+
+# dracula theme
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+
+################################################################################
+
+# Set mod key(Mod1=<Alt>,Mod4=<Super>)
+
+set $mod  Mod4
+set $mod1 Mod1
+
+################################################################################
+### borders
+################################################################################
+
+# normal除了绘制窗口边框以外，还会显示窗口的标题栏
+# none 选项不显示边框
+# pixel选项会在窗口四周绘制边框
+# <px>用来指定边框大小
+# default_border normal <px>|none|pixel <px>
+# default_floating_border normal<px>|none|pixel <px>
+
+default_border             none
+default_floating_border    none
+hide_edge_borders          smart
+
+################################################################################
+### i3-gaps
+################################################################################
+
+gaps inner 8
+gaps outer 0
+
+smart_gaps    on
+smart_borders on
+
+gaps top    20
+gaps bottom 5
+gaps left   5
+gaps right  5
+
+# gaps horizontal 20
+# gaps vertical   20
+
+# Press $mod+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+################################################################################
+### Layout
+################################################################################
+
+# 工作区方向布局
+# 默认情况下，会进行水平布局
+# 若显示器的宽度大于高度，会进行横向布局
+# 若显示器的高度大于宽度，会进行纵向布局
+# default_orientation horizontal|vertical|auto
+
+# 工作区容器布局模式(默认平铺)
+# default:平铺, stacking:堆叠, tabbed:标签
+# workspace_layout default|stacking|tabbed
+
+# 操纵布局
+# layout default|tabbed|stacking|
+# layout toggle split 在横向布局/纵向布局之间切换
+# layout toggle all   在堆叠/标签/横向布局/纵向布局之间切换
+
+bindsym $mod+w layout toggle split
+
+# 分割容器
+# split 命令使当前窗口成为一个分割容器, 分割容器可以包含多个窗口
+# 根据分割容器的布局，新的窗口会被放在当前窗口的右边（horizontal 横向分割）
+# 或者下面（vertical 纵向分割）
+# split vertical|horizontal|toggle
+
+bindsym $mod+v   split vertical
+bindsym $mod+h   split horizontal
+
+################################################################################
+### window
+################################################################################
+
+focus_follows_mouse          yes
+focus_on_window_activation   smart
+popup_during_fullscreen      smart
+
+
+# focus the parent container
+bindsym $mod+Shift+p focus parent
+
+# focus the child container
+bindsym $mod+p focus child
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
+
+# move focused window
+bindsym $mod1+Left          move left
+bindsym $mod1+Down          move down
+bindsym $mod1+Up            move up
+bindsym $mod1+Right         move right
+
+# resize window
+bindsym $mod+r mode "  "
+mode "  " {
+
+# h窗口宽度减少15个像素
+# j窗口高度增加15个像素
+# k窗口高度减少15个像素
+# l窗口宽度增加15个像素
+
+bindsym h resize shrink width  15 px or 15 ppt
+bindsym j resize grow   height 15 px or 15 ppt
+bindsym k resize shrink height 15 px or 15 ppt
+bindsym l resize grow   width  15 px or 15 ppt
+
+# 退出调整模式 : Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+
+}
+
+################################################################################
+###   floating window
+################################################################################
+
+# 调整浮动窗口
+# 按下 mod 的同时按下左键不放，移动浮动窗口
+# 按下 mod 的同时按下右键不放，调整悬浮窗口大小
+# 按下 mod 的同时按下Shift键的同时再按下鼠标右键不放，可以按比例调整浮动窗口大小
+
+floating_modifier $mod
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# set a window to stick to the glass
+bindsym $mod+s sticky toggle floating enable; resize set 810 350
+
+# set specific windows to floating mode
+
+for_window [window_role="pop-up"]           floating enable
+for_window [window_role="task_dialog"]      floating enable
+for_window [window_role="Preferences$"]     floating enable
+for_window [window_type="dialog"]           floating enable
+for_window [window_type="menu"]             floating enable
+for_window [window_role="app"]              floating enable
+for_window [window_role="Organizer"]        floating enable
+for_window [window_role="toolbox"]          floating enable
+for_window [class="File-roller"]            floating enable
+for_window [class="foo" instance="bar"]     floating enable
+for_window [title="File Transfer*"]         floating enable
+for_window [window_role="GtkFileChooserDialog"] resize set 800 600, move position center
+
+# 以下程序使用浮动窗口模式
+
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable
+for_window [class="qt5ct"] floating enable border normal
+for_window [class="Qtconfig-qt4"] floating enable border normal
+
+for_window [class="SimpleScreenRecorder"] floating enable
+for_window [class="Alacritty"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Viewnior"] floating enable
+for_window [class ="Blueman-manager"] floating enable
+for_window [class="jupyter-qtconsole"] floating enable
+for_window [class="Gimp"] floating enable
+
+for_window [class="Xarchiver"]        floating enable
+for_window [class="GParted"]          floating enable
+for_window [class="Lxappearance"]     floating enable
+for_window [class="Manjaro Settings Manager"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pamac-updater"] floating enable
+
+################################################################################
+# 暂存窗口(额外的可隐藏浮动窗口，取消浮动还原成普通窗口)
+# 将普通窗口转换为暂存窗口
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the next scratchpad window or hide the focused scratchpad window
+bindsym $mod+minus scratchpad show
+
+################################################################################
+### bar
+################################################################################
+
+# FOR i3 BAR
+bar {
+        mode invisible
+        tray_output none
+}
+
+# 启动polybar
+exec_always --no-startup-id ~/.scripts/launch.sh
+
+# 显示隐藏 polybar
+bindsym $mod+m exec --no-startup-id polybar-msg cmd toggle
+
+################################################################################
+### WorkSpace
+################################################################################
+
+# 将工作区放到指定屏幕上
+# workspace <workspacename> output <output1> [output2]
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# workspace behaviour
+workspace_auto_back_and_forth yes
+
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# navigate workspaces next / previous
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# define names for workspaces
+
+set $WS1   "1:"
+set $WS2   "2:"
+set $WS3   "3:"
+set $WS4   "4:"
+set $WS5   "5:"
+set $WS6   "6:"
+set $WS7   "7:"
+
+# switch to workspace
+
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+
+# move focused container to workspace
+# 仅移动窗口不会切换到指定的工作区
+
+bindsym $mod+Ctrl+1	move container to workspace $WS1
+bindsym $mod+Ctrl+2	move container to workspace $WS2
+bindsym $mod+Ctrl+3	move container to workspace $WS3
+bindsym $mod+Ctrl+4	move container to workspace $WS4
+bindsym $mod+Ctrl+5	move container to workspace $WS5
+bindsym $mod+Ctrl+6	move container to workspace $WS6
+bindsym $mod+Ctrl+7	move container to workspace $WS7
+
+# move focused container to workspace
+# 连同当前活动窗口一起切换到指定的工作区
+
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+
+# Automatically putting clients on specific workspaces
+# 要获取类和实例，可以使用xprop。单击窗口后，可能会有这样子的输出
+# WM_CLASS(STRING) = "irssi", "URxvt"
+# 其中“irssi”是实例，”URxvt“是类
+
+assign [class="Double Commander"]         $WS1
+assign [class="Joplin"]                   $WS2
+assign [class="libreoffice-calc"]         $WS2
+assign [class="libreoffice-startcenter"]  $WS2
+assign [class="libreoffice-writer"]       $WS2
+assign [class="(?i)Chrome"]               $WS5
+assign [title="ncmpcpp"]                  $WS6
+assign [title="htop"]                     $WS7
+
+################################################################################
+### 系统设置
+################################################################################
+
+### touchpad
+bindsym ctrl + F9 exec xinput set-prop 15 "Device Enabled" 0 && dunstify -a "Touchpad" "Touchpad" "Touchpad is disabled" -r 100
+bindsym ctrl + F10 exec xinput set-prop 15 "Device Enabled" 1 && dunstify -a "Touchpad" "Touchpad" "Touchpad is enabled" -r 100
+
+### sound
+
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+
+### backlight
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+### microphone 
+bindsym ctrl + F3 exec amixer set Capture cap && dunstify -a "Microphone" "Microphone" "Microphone is now unmuted" -r 100 -i /usr/local/bin/icons/mic.svg
+bindsym ctrl + F4 exec amixer set Capture nocap && dunstify -a "Microphone" "Microphone" "Microphone is now muted" -r 100 -i /usr/local/bin/icons/mic-off.svg
+
+### 定时任务
+
+# 自动锁屏
+exec_always --no-startup-id xautolock -time 10 -locker 'betterlockscreen -l ~/Pictures/wallpaper/lockscreen.png'
+
+# 闲置900秒后黑屏
+exec_always --no-startup-id xset dpms 900
+
+### i3
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# 系统命令
+bindsym $mod+0 mode "$mode_system"
+set $mode_system 系统 : 注销(L) 重启(R) 关机(S)
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit logout,   mode "default"
+    bindsym r exec --no-startup-id i3exit reboot,   mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym Escape mode "default"
+}
+
+################################################################################
+### startup applications
+
+#  exec只会在i3初次启动时执行命令,使用exec_always让i3在重启时也执行命令
+#  如果没有添加--no-startup-id表示在启动时鼠标会变成圆圈60秒,并且在执行exec命令的工作区上出现一个窗口(有待考究)
+#  如果命令中有 ; 和 , 则需要把命令用双引号括起来,双引号内部的双引号需要使用 \\ 转义
+#  ; 和 , 的区别在于 ; 分隔的命令列表只有第一个命令匹配前面的条件,而 , 分隔的命令列表全部匹配前面的条件
+
+################################################################################
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+exec_always --no-startup-id picom --experimental-backends -b &
+exec_always --no-startup-id dunst &
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id blueman-applet
+
+exec --no-startup-id variety
+
+# Make sure fonts are loaded right
+exec_always --no-startup-id xset +fp ~/.fonts/
+exec_always --no-startup-id xset fp rehash
+exec_always --no-startup-id xrdb ~/.Xresources
+
+# exec_always --no-startup-id sbxkb
+exec_always --no-startup-id ff-theme-util
+
+exec --no-startup-id start_conky_maia
+exec_always --no-startup-id fix_xcursor "Azenis"
+exec_always --no-startup-id setcursor "Azenis"
+
+exec --no-startup-id fcitx5 &
+
+################################################################################
+### 快速启动
+################################################################################
+# 锁屏
+exec_always --no-startup-id betterlockscreen -u ~/Pictures/wallpaper/lock.png
+bindsym $mod+9 exec --no-startup-id betterlockscreen -l
+
+bindsym $mod+l   exec --no-startup-id rofi -modi drun   -show drun
+bindsym $mod+Tab exec --no-startup-id rofi -modi window -show window
+
+
+bindsym $mod+z  exec --no-startup-id morc_menu
+bindsym $mod+a  exec --no-startup-id alacritty
+bindsym $mod+n  exec --no-startup-id alacritty -e ncmpcpp
+bindsym $mod+e  exec --no-startup-id pcmanfm
+
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+
+################################################################################

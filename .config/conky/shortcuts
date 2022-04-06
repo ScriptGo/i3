@@ -1,0 +1,97 @@
+conky.config = {
+------------------------------------------------------------------------------------------------------------------------窗口
+own_window = true,  --创建窗口
+own_window_type = 'override', --窗口类型(Gnome修改为 'desktop')
+own_window_class = 'Conky',
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+own_window_argb_visual = true, --启用透明
+own_window_transparent = true, --透明
+background = true, --后台运行
+double_buffer = true, --启用双重缓冲，消除闪烁
+
+------------------------------------------------------------------------------------------------------------------------边框
+draw_borders = false,
+draw_graph_borders = false,
+draw_outline = false,
+draw_shades = false,  
+
+no_buffers = true,
+out_to_console = false,
+out_to_stderr = false,
+stippled_borders = 0,
+
+------------------------------------------------------------------------------------------------------------------------位置
+alignment = 'top_left', --窗口所在屏幕位置
+gap_x = 20,             --窗口离屏幕左边或右边的距离
+gap_y = 18,             --窗口离屏幕顶部或底部的距离
+maximum_width = 320,     --窗口最大宽度
+------------------------------------------------------------------------------------------------------------------------字体
+font = 'Sarasa Mono:size=10',
+uppercase = false,
+use_spacer = 'none',
+
+text_buffer_size = 2048,
+use_xft = true,
+override_utf8_locale = true,
+
+------------------------------------------------------------------------------------------------------------------------颜色
+color0 = 'FF00FF', --洋红色
+color1 = '7CFC00', --草坪绿
+color2 = 'FFFF00', --纯黄色
+color3 = '0000FF', --纯蓝色
+color4 = '00FF00', --酸橙色
+color5 = 'FFFFFF', --纯白色
+color6 = '000000', --纯黑色
+
+------------------------------------------------------------------------------------------------------------------------其他
+cpu_avg_samples = 2,
+net_avg_samples = 2,
+format_human_readable = true,
+extra_newline = false,
+update_interval = 1.0,
+imlib_cache_size = 0,
+
+}
+
+conky.text = [[
+
+${color1}Launch
+${color5}${stippled_hr}
+${color2}Win + l : ${color1}${alignr}Rofi
+${color2}Win + z : ${color1}${alignr}Morc_menu
+${color2}Win + a : ${color1}${alignr}Terminal
+${color2}Win + n : ${color1}${alignr}Ncmpcpp
+${color2}Win + d : ${color1}${alignr}DoubleCommander
+${color2}Win + e : ${color1}${alignr}Pcmanfm
+
+${color2}PrtSc : ${color1}${alignr}截取全屏
+${color2}Win + PrtSc : ${color1}${alignr}截取活动区域
+${color2}Win + Shift + PrtSc : ${color1}${alignr}自定义截取区域
+${color5}${stippled_hr}
+
+${color1}Windows
+${color5}${stippled_hr}
+${color2}Win + t   :${color1}${alignr}标签布局
+${color2}Win + w   :${color1}${alignr}切换布局
+${color2}Win + Tab : ${color1}${alignr}切换窗口
+${color2}Win + f : ${color1}${alignr}全屏
+${color2}Win + q : ${color1}${alignr}关闭窗口
+${color2}Win + r : ${color1}${alignr}窗口调整
+${color2}Win + 方向键  : ${color1}${alignr}移动窗口
+${color2}Alt + 方向键  : ${color1}${alignr}切换窗口焦点
+
+${color2}Win + Shift + - : ${color1}${alignr}暂存窗口
+${color2}Win + - : ${color1}${alignr}显示/隐藏暂存窗口
+${color2}Win + Space : ${color1}${alignr}平铺/浮动焦点切换
+${color2}Win + Shift + Space : ${color1}${alignr}平铺/浮动切换
+${color2}Win + s : ${color1}${alignr}粘滞浮动窗口
+${color5}${stippled_hr}
+
+${color1}WorkSpace${font}
+${color5}${stippled_hr}
+${color2}Win + 数字:  ${color1}${alignr}仅切换到指定WS
+${color2}Win + Ctrl + 数字 :  ${color1}${alignr}将窗口移动到指定WS
+${color2}Win + Shift + 数字 :  ${color1}${alignr}连同窗口一并切换到指定WS
+${color5}${stippled_hr}
+]]
