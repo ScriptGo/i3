@@ -85,7 +85,7 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 1
 
     # Padding between text and separator.
     padding = 12
@@ -98,7 +98,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 4
+    frame_width = 3
 
     # Defines color of the frame around the notification window.
     frame_color = "#343746"
@@ -127,7 +127,7 @@
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 1
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -163,6 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
+    #format = "<span size="x-large"><b> %s</b></span>\n%b"
     format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
@@ -189,10 +190,10 @@
     stack_duplicates = true
 
     # Hide the count of stacked notifications with the same content
-    hide_duplicate_count = false
+    hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = no
+    show_indicators = yes
 
     ### Icons ###
 
@@ -202,10 +203,10 @@
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
-    min_icon_size = 0
+    min_icon_size = 24
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 48
+    max_icon_size = 64
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/apps/
@@ -222,7 +223,7 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/alacritty -e fzf:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -241,7 +242,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 15
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -302,35 +303,25 @@
 
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"
-    highlight = "#fe6c5a"
     frame_color = "#ebdbb2"
     foreground = "#ebdbb2"
     timeout = 5
-    # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
+    default_icon = ~/.config/dunst/icons/low.svg
 
 [urgency_normal]
     foreground = "#fbf1c7"
     background = "#282828"
     frame_color = "#fbf1c7"
     timeout = 5
-    # Icon for notifications with normal urgency, uncomment to enable
-    default_icon = ~/.icons/MacBuntu-Mine-Y/scalable/status/dialog-question.svg
+    default_icon = ~/.config/dunst/icons/normal.svg
 
 [urgency_critical]
     foreground = "#fb4934"
     background = "#212B30"
     frame_color = "#fb4934"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    default_icon = /usr/share/icons/Adwaita/16x16/status/dialog-warning-symbolic.symbolic.png
-
-[log_notifs]
-    # script = ~/.scripts/dunst_logger.sh
-
+    default_icon = ~/.config/dunst/icons/critical.png
 # [dunst_icon]
 #    appname = dunst
 #    default_icon = 
