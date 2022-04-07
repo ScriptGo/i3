@@ -305,20 +305,20 @@
 [urgency_low]
     background = "#282828"
     frame_color = "#ebdbb2"
-    foreground = "#ebdbb2"
+    foreground = "#83a598"
     timeout = 5
     default_icon = ~/.config/dunst/icons/low.svg
 
 [urgency_normal]
-    foreground = "#fbf1c7"
-    background = "#282828"
-    frame_color = "#fbf1c7"
+    foreground = "#282828"
+    background = "#ebdbb2"
+    frame_color = "#fe8019"
     timeout = 5
     default_icon = ~/.config/dunst/icons/normal.svg
 
 [urgency_critical]
-    foreground = "#fb4934"
-    background = "#212B30"
+    foreground = "#282828"
+    background = "#ebdbb2"
     frame_color = "#fb4934"
     timeout = 0
     default_icon = ~/.config/dunst/icons/critical.png
