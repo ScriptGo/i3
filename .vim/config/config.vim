@@ -12,7 +12,53 @@ scriptencoding utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Fern {{{
 
-let g:fern#renderer = "nerdfont"
+"" 打开vim是自动打开Fern
+augroup __fern__
+  au! *
+  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=20 -reveal=%<CR>
+augroup END
+
+"" 显示隐藏文件
+let g:fern#default_hidden=1
+let g:fern#renderer = 'nerdfont'
+
+
+"" 关闭默认按键绑定
+let g:fern#disable_default_mappings = 1
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer><nowait> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer><nowait> a <Plug>(fern-action-collapse)
+  nmap <buffer><nowait> o <Plug>(fern-action-open)
+  nmap <buffer><nowait> l <Plug>(fern-action-expand)
+  nmap <buffer><nowait> n <Plug>(fern-action-new-path)
+  nmap <buffer><nowait> N <Plug>(fern-action-new-file)
+  nmap <buffer><nowait> c <Plug>(fern-action-copy)
+  nmap <buffer><nowait> d <Plug>(fern-action-remove)
+  nmap <buffer><nowait> m <Plug>(fern-action-move)
+  nmap <buffer><nowait> r <Plug>(fern-action-rename)
+  nmap <buffer><nowait> R <Plug>(fern-action-reload)
+  nmap <buffer><nowait> h <Plug>(fern-action-hidden:toggle)
+  nmap <buffer><nowait> t <Plug>(fern-action-mark)
+  nmap <buffer><nowait> b <Plug>(fern-action-open:split)
+  nmap <buffer><nowait> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernGroup
+  autocmd! *
+  autocmd FileType fern setlocal norelativenumber |  setlocal nonumber |  call FernInit()
+augroup END
+
+"" 预览
 function! s:fern_settings() abort
     nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
     nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
@@ -24,11 +70,6 @@ augroup fern-settings
     autocmd!
     autocmd FileType fern call s:fern_settings()
 augroup END
-
-function! s:fern_settings() abort
-    nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
-    nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
-endfunction
 
 "" }}}
 
