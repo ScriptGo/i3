@@ -74,7 +74,7 @@ call plug#begin('~/.vim/plugged')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" Coding {{{
-
+    Plug 'rebolek/vim-red'
     Plug 'Yggdroot/indentLine', { 'for': ['python', 'vim', 'sh']}
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'

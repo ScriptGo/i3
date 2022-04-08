@@ -14,20 +14,20 @@ scriptencoding utf-8
 
 let g:fern#renderer = "nerdfont"
 function! s:fern_settings() abort
-  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
 endfunction
 
 augroup fern-settings
-  autocmd!
-  autocmd FileType fern call s:fern_settings()
+    autocmd!
+    autocmd FileType fern call s:fern_settings()
 augroup END
 
 function! s:fern_settings() abort
-  nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
-  nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
+    nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
+    nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
 endfunction
 
 "" }}}
@@ -54,10 +54,24 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 "" LeaderF {{{
 
 let g:Lf_ReverseOrder = 1
-let g:Lf_HideHelp = 1 " don't show the help in normal mode
-let g:Lf_UseCache = 0 " Do not use cache file
-let g:Lf_UseVersionControlTool = 0
+let g:Lf_HideHelp = 1        "" don't show the help in normal mode
+let g:Lf_ShowHidden = 1      "" show dot files
+let g:Lf_UseCache = 0        "" Do not use cache file
+let g:Lf_UseMemoryCache = 0  "" Refresh each time we call leaderf
+let g:Lf_UseVersionControlTool = 0 " Do not use version control tool to list files under a directory since
 let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_PopupColorscheme = 'gruvbox_material'
+let g:Lf_DefaultMode = 'FullPath'  ""Only fuzzy-search files names
+let g:Lf_DefaultExternalTool = "rg" " Use rg as the default search tool
+
+" Popup window settings
+let w = float2nr(&columns * 0.8)
+if w > 140
+  let g:Lf_PopupWidth = 140
+else
+  let g:Lf_PopupWidth = w
+endif
+let g:Lf_PopupPosition = [0, float2nr((&columns - g:Lf_PopupWidth)/2)]
 
 " popup mode
 let g:Lf_WindowPosition = 'popup'
@@ -68,9 +82,15 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 let g:Lf_ShortcutF = "<leader>f"
 let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 nnoremap \ :Leaderf rg<Cr>
+
 noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+nnoremap <silent> <leader>fb :<C-U>Leaderf buffer --popup<CR>
+
 noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+nnoremap <silent> <leader>fr :<C-U>Leaderf mru --popup<CR>
+
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+nnoremap <silent> <leader>ft :<C-U>Leaderf bufTag --popup<CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
 noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
@@ -79,6 +99,22 @@ noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" Search files in popup window
+nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
+
+" Grep project files in popup window
+nnoremap <silent> <leader>fg :<C-U>Leaderf rg --no-messages --popup<CR>
+
+" Search vim help files
+nnoremap <silent> <leader>fh :<C-U>Leaderf help --popup<CR>
+
+
+" Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
+" items.
+let g:Lf_CommandMap = {'<C-J>': ['<C-N>'], '<C-K>': ['<C-P>']}
+
+
 
 " should use `Leaderf gtags --update` first
 let g:Lf_GtagsAutoGenerate = 0
@@ -90,7 +126,9 @@ noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 " Ignore certain files and directories when searching files
+" set up working directory for git repository
 let g:Lf_WorkingDirectoryMode = 'a'
+
 let g:Lf_WildIgnore = {
     \ 'dir': ['.git', '__pycache__', '.DS_Store'],
     \ 'file': ['*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
@@ -110,16 +148,37 @@ nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
 "" }}}
 
+"" vim-matchup {{{
+" Improve performance
+let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_timeout = 100
+let g:matchup_matchparen_insert_timeout = 30
+
+" Enhanced matching with matchup plugin
+let g:matchup_override_vimtex = 1
+
+" Whether to enable matching inside comment or string
+let g:matchup_delim_noskips = 0
+
+" Show offscreen match pair in popup window
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+
+"" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" vim-markdown {{{
 
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 1
+let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_math = 1
+let g:tex_conceal = ''
+let g:vim_markdown_math = 0
 let g:vim_markdown_new_list_item_indent = 0
 
+let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 "" }}}
 
@@ -188,5 +247,20 @@ let g:NERDSpaceDelims = 1     "" 注释符号后面自动加个空格
 let g:asyncrun_open = 6    "" 自动打开 quickfix window ，高度为 6
 let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
 let $PYTHONUNBUFFERED = 1  "" 看到 Python 实时输出
+
+"" }}}
+
+"" vista {{{
+
+let g:vista#renderer#icons = {
+      \ 'member': '',
+      \ }
+
+" Do not echo message on command line
+let g:vista_echo_cursor = 0
+" Stay in current window when vista window is opened
+let g:vista_stay_on_open = 0
+
+nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
 
 "" }}}
