@@ -51,19 +51,6 @@ call plug#begin('~/.vim/plugged')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"" Git {{{
-
-    Plug 'junegunn/gv.vim', {'on': ['GV', 'GV!'] }
-    Plug 'tpope/vim-fugitive'
-    Plug 'mhinz/vim-signify'
-    Plug 'junegunn/vim-github-dashboard', {'on': ['GHDashboard', 'GHActivity'] }
-    Plug 'mattn/webapi-vim', {'on': 'Gist'}
-    Plug 'mattn/gist-vim', {'on': 'Gist'}
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "" Markdown {{{
 
     Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
