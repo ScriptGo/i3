@@ -9,7 +9,10 @@ scriptencoding utf-8
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" 文件管理
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "" Fern {{{
 
 "" 打开vim是自动打开Fern
@@ -55,7 +58,7 @@ endfunction
 
 augroup FernGroup
   autocmd! *
-  autocmd FileType fern setlocal norelativenumber |  setlocal nonumber |  call FernInit()
+  autocmd FileType fern setlocal norelativenumber | setlocal nonumber | call FernInit()
 augroup END
 
 "" 预览
@@ -73,7 +76,28 @@ augroup END
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" 实用插件
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"" vim-matchup {{{
+" Improve performance
+let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_timeout = 100
+let g:matchup_matchparen_insert_timeout = 30
+
+" Enhanced matching with matchup plugin
+let g:matchup_override_vimtex = 1
+
+" Whether to enable matching inside comment or string
+let g:matchup_delim_noskips = 0
+
+" Show offscreen match pair in popup window
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+
+"" }}}
+
+
 "" vim-surround {{{
 
 "- ds 删除一个配对符号
@@ -81,7 +105,8 @@ augroup END
 "- ys 增加一个配对符号
 
 "" }}}
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 "" vim-easy-align {{{
 
 xnoremap <silent> ga <Plug>(EasyAlign)
@@ -91,7 +116,14 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" which-key {{{
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
+nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
+"" }}}
+
 "" LeaderF {{{
 
 let g:Lf_ReverseOrder = 1
@@ -180,33 +212,10 @@ let g:Lf_WildIgnore = {
 
 "" }}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Markdown
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"" which-key {{{
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-
-nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
-"" }}}
-
-"" vim-matchup {{{
-" Improve performance
-let g:matchup_matchparen_deferred = 1
-let g:matchup_matchparen_timeout = 100
-let g:matchup_matchparen_insert_timeout = 30
-
-" Enhanced matching with matchup plugin
-let g:matchup_override_vimtex = 1
-
-" Whether to enable matching inside comment or string
-let g:matchup_delim_noskips = 0
-
-" Show offscreen match pair in popup window
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" vim-markdown {{{
 
 let g:vim_markdown_folding_disabled = 1
@@ -223,7 +232,10 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Codeing
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "" indentLine {{{
 
 let g:indentLine_enabled = 1
@@ -237,14 +249,12 @@ endif
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" rainbow {{{
 
 let g:rainbow_active = 1 ""启用rainbow
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" ALE {{{
 
@@ -253,28 +263,27 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_chaged = 'always'
 
-"""自定义error和warning图标
+"" 自定义error和warning图标
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
-"""显示Linter名称,出错或警告等相关信息
+"" 显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = '✖ Error'
 let g:ale_echo_msg_warning_str = '⚠ Warning'
 let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
 
-"""使用指定的Linter
+"" 使用指定的Linter
 let g:ale_linters_explicit = 1
 let g:ale_linters = {'python': ['flake8'], 'vim': ['vint']}
 let g:ale_python_flake8_options="--ignore=E114,E116,E131 --max-line-length=120"
 let g:ale_fixers = {'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace']}
 
-"""关闭本地列表,使用 quickfix
+"" 关闭本地列表,使用 quickfix
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Nercommenter {{{
 
 let g:NERDCompactSexyComs = 1 "" 美化多行注释
@@ -282,7 +291,6 @@ let g:NERDSpaceDelims = 1     "" 注释符号后面自动加个空格
 
 " "}}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" AsyncRun {{{
 
 let g:asyncrun_open = 6    "" 自动打开 quickfix window ，高度为 6
@@ -304,4 +312,7 @@ let g:vista_stay_on_open = 0
 
 nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
 
+"" }}}
+
+"" LSP {{{
 "" }}}

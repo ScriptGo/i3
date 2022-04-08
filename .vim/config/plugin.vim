@@ -38,14 +38,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'lilydjwg/colorizer'
     Plug 'gko/vim-coloresque'
-    Plug 'mechatroner/rainbow_csv'
-    Plug 'chrisbra/csv.vim'
-    Plug 'liuchengxu/graphviz.vim'
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'tpope/vim-surround'
+    Plug 'liuchengxu/graphviz.vim'
     Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

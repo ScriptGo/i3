@@ -3,8 +3,8 @@ scriptencoding utf-8
 "" TimeOut
 
 set timeout ttimeout     "" 打开功能键超时检测（终端下功能键为一串 ESC 开头的字符串）
-set timeoutlen=600       "" Time out on mappings
-set updatetime=500       "" Idle time to write swap and trigger CursorHold
+set timeoutlen=300       "" Time out on mappings
+set updatetime=300       "" Idle time to write swap and trigger CursorHold
 set ttimeoutlen=100      "" 功能键超时检测 50 毫秒
 set winaltkeys=no        "" alt键不映射到菜单栏
 

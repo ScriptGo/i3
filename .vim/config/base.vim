@@ -9,8 +9,7 @@ set guifont=Fira\ Code\ 12                      "" Linux字体设置
 """窗口设置
 
 if has('gui_running')
-   set guioptions-=m           "" 隐藏菜单和工具条
-   set guioptions-=T
+   set guioptions-=T           "" 隐藏菜单和工具条
    set guioptions-=L           "" 隐藏滚动条
    set guioptions-=r
    set title                   "" 标题栏显示的信息
