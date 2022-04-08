@@ -27,7 +27,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'lambdalisue/fern-renderer-nerdfont.vim'
     Plug 'lambdalisue/glyph-palette.vim'
-    Plug 'lambdalisue/fern-git-status.vim'
 
 "" }}}
 
