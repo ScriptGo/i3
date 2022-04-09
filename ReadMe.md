@@ -1,4 +1,4 @@
-# Manjaro i3 配置说明
+# Manjaro i3 mini版配置说明
 
 ## 主要软件
 
@@ -12,4 +12,4 @@
 | Browser  | chrome                    |
 | Editor   | vim & typora              |
 | Media    | mpv & mpd & ncmpcpp       |
-| DB       | mongodb                   |
+| DB       | mongoDB & MariaDB         |
