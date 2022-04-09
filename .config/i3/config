@@ -374,11 +374,10 @@ bindsym $mod+Ctrl+Left workspace prev
 
 set $WS1   "1:"
 set $WS2   "2:"
-set $WS3   "3:"
-set $WS4   "4:"
-set $WS5   "5:"
-set $WS6   "6:"
-set $WS7   "7:"
+set $WS3   "3:"
+set $WS4   "4:"
+set $WS5   "5:"
+set $WS6   "6:"
 
 # switch to workspace
 
@@ -388,7 +387,6 @@ bindsym $mod+3 workspace $WS3
 bindsym $mod+4 workspace $WS4
 bindsym $mod+5 workspace $WS5
 bindsym $mod+6 workspace $WS6
-bindsym $mod+7 workspace $WS7
 
 # move focused container to workspace
 # 仅移动窗口不会切换到指定的工作区
@@ -399,7 +397,6 @@ bindsym $mod+Ctrl+3	move container to workspace $WS3
 bindsym $mod+Ctrl+4	move container to workspace $WS4
 bindsym $mod+Ctrl+5	move container to workspace $WS5
 bindsym $mod+Ctrl+6	move container to workspace $WS6
-bindsym $mod+Ctrl+7	move container to workspace $WS7
 
 # move focused container to workspace
 # 连同当前活动窗口一起切换到指定的工作区
@@ -410,21 +407,24 @@ bindsym $mod+Shift+3 move container to workspace $WS3
 bindsym $mod+Shift+4 move container to workspace $WS4
 bindsym $mod+Shift+5 move container to workspace $WS5
 bindsym $mod+Shift+6 move container to workspace $WS6
-bindsym $mod+Shift+7 move container to workspace $WS7
 
 # Automatically putting clients on specific workspaces
 # 要获取类和实例，可以使用xprop。单击窗口后，可能会有这样子的输出
 # WM_CLASS(STRING) = "irssi", "URxvt"
 # 其中“irssi”是实例，”URxvt“是类
 
-assign [class="Double Commander"]         $WS1
-assign [class="Joplin"]                   $WS2
+assign [class="Double Commander"]         $WS2
 assign [class="libreoffice-calc"]         $WS2
 assign [class="libreoffice-startcenter"]  $WS2
 assign [class="libreoffice-writer"]       $WS2
-assign [class="(?i)Chrome"]               $WS5
-assign [title="ncmpcpp"]                  $WS6
-assign [title="htop"]                     $WS7
+assign [class="Joplin"]                   $WS3
+assign [class="typora"]                   $WS3
+assign [class="code-oss"]                 $WS3
+assign [class="gvim"]                     $WS3
+assign [class="jupyter-qtconsole"]        $WS3
+assign [class="(?i)Chrome"]               $WS4
+assign [class="mpv"]                      $WS5
+assign [title="htop"]                     $WS6
 
 ################################################################################
 ### 系统设置
@@ -491,7 +491,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec_always --no-startup-id picom --experimental-backends -b &
-exec_always --no-startup-id dunst &
+exec --no-startup-id dunst &
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
