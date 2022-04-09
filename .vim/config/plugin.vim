@@ -38,6 +38,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'lilydjwg/colorizer'
     Plug 'gko/vim-coloresque'
+    Plug 'lifepillar/vim-colortemplate'
     Plug 'tpope/vim-surround'
     Plug 'liuchengxu/graphviz.vim'
     Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }

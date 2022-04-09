@@ -18,8 +18,8 @@ configuration {
     display-window:                 "";
     display-windowcd:               "";
     display-run:                    "";
-    display-ssh:                    "📡";
-    display-drun:                   "🔍";
+    display-ssh:                    "";
+    display-drun:                   "";
     display-combi:                  " ";
     display-keys:                   "";
     display-filebrowser:            "";
