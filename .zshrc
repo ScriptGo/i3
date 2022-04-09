@@ -33,7 +33,9 @@ alias -s zip="unzaip"
 alias -s bz2="tar -xjvf"
 
 ## Other
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:~/.local/bin$PATH
+
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 neofetch
 
