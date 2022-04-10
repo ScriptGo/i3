@@ -37,7 +37,7 @@ nnoremap <silent> <F2> :call NumberToggle()<CR>
 nnoremap <silent> <F3> :IndentLinesToggle<CR>:set list! lcs=tab:\\|\<Space><CR>
 
 """F4 显示/隐藏 Fern
-nnoremap <silent> <F4> :Fern . -drawer -toggle -width=20 -reveal=%<CR>
+nnoremap <silent> <F4> :Fern . -drawer -toggle -width=25 -reveal=%<CR>
 
 """F5 AsyncRun
 nnoremap <silent> <F5>  :AsyncRun -raw python %<CR>

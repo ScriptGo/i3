@@ -3,9 +3,8 @@ scriptencoding utf-8
 "" UI {{{
 
     set termguicolors
-    colorscheme gruvbox8
+    colorscheme dracula
     set background=dark
-
 
 "" }}}
 
@@ -18,7 +17,7 @@ scriptencoding utf-8
 "" 打开vim是自动打开Fern
 augroup __fern__
   au! *
-  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=20 -reveal=%<CR>
+  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=25 -reveal=%<CR>
 augroup END
 
 "" 显示隐藏文件
@@ -268,8 +267,8 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
 "" 显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = '✖ Error'
-let g:ale_echo_msg_warning_str = '⚠ Warning'
+let g:ale_echo_msg_error_str = '✖ '
+let g:ale_echo_msg_warning_str = '⚠ '
 let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
 
 "" 使用指定的Linter
@@ -293,7 +292,7 @@ let g:NERDSpaceDelims = 1     "" 注释符号后面自动加个空格
 
 "" AsyncRun {{{
 
-let g:asyncrun_open = 6    "" 自动打开 quickfix window ，高度为 6
+let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 6
 let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
 let $PYTHONUNBUFFERED = 1  "" 看到 Python 实时输出
 

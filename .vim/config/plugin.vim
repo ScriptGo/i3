@@ -67,7 +67,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'tpope/vim-commentary'
     Plug 'tomtom/tcomment_vim'
-    Plug 'skywind3000/asyncrun.vim', {'for': ['python']}
+    Plug 'skywind3000/asynctasks.vim'
+    Plug 'skywind3000/asyncrun.vim'
     Plug 'dradtke/vim-dap'
     Plug 'liuchengxu/vista.vim'
     Plug 'wfxr/minimap.vim'
