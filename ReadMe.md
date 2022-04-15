@@ -24,9 +24,9 @@
 | ------- | ------ | --- |
 | Sarasa Gothic | 更纱黑体 | 基于Inter，全宽引号 |
 | Sarasa UI | 更纱黑体 UI | 基于Inter，窄引号|
-| Sarasa Mono | 等距更纱黑体 | 基于Iosevka，有连字，全宽破折号（em dash）|
-| Sarasa Term | | 基于Iosevka，有连字，全宽破折号（em dash）|
-| Sarasa Fixed | | 基于Iosevka，无连字，半宽破折号（em dash）|
+| Sarasa Mono | 等距更纱黑体 | 基于Iosevka，有连字，全宽破折号|
+| Sarasa Term | | 基于Iosevka，有连字，全宽破折号|
+| Sarasa Fixed | | 基于Iosevka，无连字，半宽破折号|
 
 包含汉字字形：
 

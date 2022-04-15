@@ -1,317 +1,199 @@
 scriptencoding utf-8
 
-"" UI {{{
+"" 文件格式
+set fileformats=unix                            "" 文件格式
+set helplang=cn                                 "" 中文帮助
+set guifont=Fira\ Code\ 12                      "" Linux字体设置
 
-    set termguicolors
-    colorscheme dracula
-    set background=dark
+"""=============================================================================
+"""窗口设置
+
+
+set fillchars=fold:\ ,vert:\|,stl:\ ,stlnc:\  ""在被分割的窗口间显示空白，便于阅读
+
+set equalalways                       ""分割窗口时保持平衡
+set splitbelow splitright             ""分割出来的窗口位于当前窗口下边/右边
+set lazyredraw                        ""在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能
+set switchbuf=useopen,usetab,newtab   ""跳转会先复用已有文件的窗口，再复用已有标签，最后没有的话新建标签
+set signcolumn=yes                    ""始终显示列标记
+set nostartofline                     ""光标滚动后将光标保留在同一列中
+set scrolloff=3                       ""上下移动光标时，光标的上方或下方至少会保留显示的行数
+set sidescrolloff=5                   ""Keep at least 5 lines left/right
+set linespace=3                       ""行间距，如果默认值太小，代码会非常纠结
+set scrolljump=5                      ""lines to scroll when cursor leaves screen
+set synmaxcol=999                     "" stop syntax highlight after x lines for performance
+set textwidth=81                      ""设置行宽，即一行显示多少个字符。
+set wrapmargin=2                      ""指定折行处与编辑窗口的右边缘之间空出的字符数
+set cmdheight=2                       ""命令行的高度
+set cmdwinheight=5
+set winwidth=30
+set winminwidth=10
+set helpheight=12
+set previewheight=12
+set pumheight=12                    "补全列表中项目的个数
+
+"""=============================================================================
+"""文本格式化
+ 
+
+set ambiwidth=double    ""告诉Vim怎么处理东亚二义性宽度字符类，例如破折号、五角星符号等等,防止特殊符号无法正常显示
+set formatoptions+=mM    ""允许在两个汉字之间断行，即使汉字之间没有出现空格
+set formatoptions+=B    ""合并两行中文时，不在中间加空格
+set formatoptions=1jqn     ""自动格式化
+set breakindentopt = "shift:2,min:20"
+set backspace=indent,eol,start   ""
+set whichwrap+=<,>,h,l           ""设退格键和光标键跨越行边界
+
+set nowrap                  ""关闭自动折行
+set breakat=\ \	;:,!?       ""长行折行标记字符
+set linebreak               ""只有遇到在breakat指定的符号处（比如空格、连词号和其他标点符号），才折行。也就是说，不会在单词内部折行
+set showbreak=↳             ""设置set nowrap命令后, 对于超出屏幕范围的行, 会在边界显示↪
+
+set iskeyword+=_,$,@,%,#,-  ""带有如下符号的单词不要被换行分割
+
+"""=============================================================================
+"""保存，备份，历史记录
+
+set browsedir=buffer         ""设定文件浏览器目录为当前目录
+set autochdir                ""自动切换当前目录为当前文件所在的目录
+
+set confirm                  ""修改只读文件时发出提示
+set autoread                 ""文件修改之后自动载入
+set autowrite                ""自动保存
+
+set nobackup                 ""取消备份
+set noswapfile               ""关闭swap文件
+
+set undofile                 ""保留撤销记录
+set undodir=~/.vim/undo
+set bufhidden=hide           "" 当buffer被丢弃的时候隐藏它
+set history=9999             "" 记住多少次历史操作记录数
+set viminfo^=%               "" Remember info about open buffers on close
+set viminfo+=!               "" 保存全局变量
+
+"""搜索替换
+
+set hlsearch      "" 搜索高亮
+set incsearch     "" 即时搜索
+set ignorecase    "" 搜索时忽略大小写
+set smartcase     "" 有一个或一个以上大写字母时仍保持对大小写敏感
+set nowrapscan    "" 禁止在搜索到文件两端时重新搜索
+set gdefault      "" 替换时，缺省启用g标志，即同一行里的所有匹配都会被替换
+
+"""括号匹配
+
+set showmatch       ""显示匹配的括号
+set matchtime=3     ""高亮匹配括号时间
+set matchpairs+=<:>,(:),{:},[:]     ""匹配括号的规则
+
+""""剪贴板
+
+if has('unnamedplus')    ""vim寄存器和系统剪贴板共享
+  set clipboard& clipboard+=unnamedplus
+else
+  set clipboard& clipboard+=unnamed
+endif
+
+"""=============================================================================
+"""其他配置
+
+set hidden                     "" 可以在没有保存的情况下切换buffer，此时的修改由 vim 负责保存
+set report=0                   "" Don't report on line changes
+set magic                      "" 智能处理正则表达式中的某些符号
+set visualbell errorbells      "" 出错的提示声音
+set virtualedit=block          "" Virtual edit is useful for visual block edit
+set display=lastline           "" Show as much as possible of the last line
+set ttyfast                    "" Faster redrawing
+set ttymouse=xterm2
+"""=============================================================================
+"""编程相关配置
+
+"" 缩进 {{{
+
+set tabstop=4           "" 1 Tab = 4 spaces
+set expandtab           "" 用空格替代Tab
+set shiftwidth=4        "" 缩进用的空格数
+set softtabstop=4       "" 软制表符宽度
+set shiftround
+set smarttab
+
+set smartindent
+set autoindent
 
 "" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" 文件管理
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" 折叠 {{{
+if has('folding')
+    set foldenable               ""允许代码折叠
+    set foldmethod=indent        ""默认使用缩进折叠
+    set foldlevel=99             ""默认打开所有缩进
+    set foldcolumn=1             ""折叠区域的宽度
+    set foldexpr=1               ""代码块折叠后显示的行数
+endif
+" 新建的文件，刚打开的文件不折叠
+autocmd! BufNewFile,BufRead * setlocal nofoldenable
+"" }}}
 
-"" Fern {{{
+"" 自动补全 {{{
 
-"" 打开vim是自动打开Fern
-augroup __fern__
-  au! *
-  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=25 -reveal=%<CR>
-augroup END
+set completeopt=menu
+set completeopt+=menuone
+set completeopt+=popup
+set completeopt+=noinsert
 
-"" 显示隐藏文件
-let g:fern#default_hidden=1
-let g:fern#renderer = 'nerdfont'
+if has('wildmenu')
+    set wildmenu
+    set wildmode=list:longest,full
+    set wildchar=<TAB>
+    set wildoptions=tagfile
+    set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
+    set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib
+    set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
+    set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz
+    set wildignore+=*.DS_Store*,*.ipch
+    set wildignore+=*.gem
+    set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
+    set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
+    set wildignore+=*/.nx/**,*.app,*.git,.git
+    set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
+    set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
+    set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
+    set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
+    set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
+    set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
+    set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
+    set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"   ""Tab键在补全列表中跳转
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"    ""回车即选中当前项
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif   ""离开插入模式后自动关闭预览窗口
+endif
 
+"" }}}
 
-"" 关闭默认按键绑定
-let g:fern#disable_default_mappings = 1
+"""=============================================================================
+"" 自定义设置
 
-function! FernInit() abort
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-expand-collapse)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-expand)",
-        \   "\<Plug>(fern-action-collapse)",
-        \ )
-  nmap <buffer><nowait> <CR> <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer><nowait> a <Plug>(fern-action-collapse)
-  nmap <buffer><nowait> o <Plug>(fern-action-open)
-  nmap <buffer><nowait> l <Plug>(fern-action-expand)
-  nmap <buffer><nowait> n <Plug>(fern-action-new-path)
-  nmap <buffer><nowait> N <Plug>(fern-action-new-file)
-  nmap <buffer><nowait> c <Plug>(fern-action-copy)
-  nmap <buffer><nowait> d <Plug>(fern-action-remove)
-  nmap <buffer><nowait> m <Plug>(fern-action-move)
-  nmap <buffer><nowait> r <Plug>(fern-action-rename)
-  nmap <buffer><nowait> R <Plug>(fern-action-reload)
-  nmap <buffer><nowait> h <Plug>(fern-action-hidden:toggle)
-  nmap <buffer><nowait> t <Plug>(fern-action-mark)
-  nmap <buffer><nowait> b <Plug>(fern-action-open:split)
-  nmap <buffer><nowait> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer><nowait> < <Plug>(fern-action-leave)
-  nmap <buffer><nowait> > <Plug>(fern-action-enter)
-endfunction
+au BufNewFile,BufRead *.md          set ft=mkd tw=80 syntax=markdown
+au BufNewFile,BufRead *.markdown    set ft=mkd tw=80 syntax=markdown
 
-augroup FernGroup
-  autocmd! *
-  autocmd FileType fern setlocal norelativenumber | setlocal nonumber | call FernInit()
-augroup END
-
-"" 预览
-function! s:fern_settings() abort
-    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-endfunction
-
-augroup fern-settings
+""" {{{
+augroup filetype_vim
     autocmd!
-    autocmd FileType fern call s:fern_settings()
+    autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-"" }}}
+""" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" 实用插件
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" vim-matchup {{{
-" Improve performance
-let g:matchup_matchparen_deferred = 1
-let g:matchup_matchparen_timeout = 100
-let g:matchup_matchparen_insert_timeout = 30
-
-" Enhanced matching with matchup plugin
-let g:matchup_override_vimtex = 1
-
-" Whether to enable matching inside comment or string
-let g:matchup_delim_noskips = 0
-
-" Show offscreen match pair in popup window
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
-
-"" }}}
-
-
-"" vim-surround {{{
-
-"- ds 删除一个配对符号
-"- cs 修改一个配对符号
-"- ys 增加一个配对符号
-
-"" }}}
-
-
-"" vim-easy-align {{{
-
-xnoremap <silent> ga <Plug>(EasyAlign)
-nnoremap <silent> ga <Plug>(EasyAlign)
-" Align GitHub-flavored Markdown tables
-au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
-
-"" }}}
-
-"" which-key {{{
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-
-nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
-"" }}}
-
-"" LeaderF {{{
-
-let g:Lf_ReverseOrder = 1
-let g:Lf_HideHelp = 1        "" don't show the help in normal mode
-let g:Lf_ShowHidden = 1      "" show dot files
-let g:Lf_UseCache = 0        "" Do not use cache file
-let g:Lf_UseMemoryCache = 0  "" Refresh each time we call leaderf
-let g:Lf_UseVersionControlTool = 0 " Do not use version control tool to list files under a directory since
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_PopupColorscheme = 'gruvbox_material'
-let g:Lf_DefaultMode = 'FullPath'  ""Only fuzzy-search files names
-let g:Lf_DefaultExternalTool = "rg" " Use rg as the default search tool
-
-" Popup window settings
-let w = float2nr(&columns * 0.8)
-if w > 140
-  let g:Lf_PopupWidth = 140
-else
-  let g:Lf_PopupWidth = w
-endif
-let g:Lf_PopupPosition = [0, float2nr((&columns - g:Lf_PopupWidth)/2)]
-
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
-let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-
-let g:Lf_ShortcutF = "<leader>f"
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
-nnoremap \ :Leaderf rg<Cr>
-
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-nnoremap <silent> <leader>fb :<C-U>Leaderf buffer --popup<CR>
-
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-nnoremap <silent> <leader>fr :<C-U>Leaderf mru --popup<CR>
-
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-nnoremap <silent> <leader>ft :<C-U>Leaderf bufTag --popup<CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-
-" search visually selected text literally
-xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-noremap go :<C-U>Leaderf! rg --recall<CR>
-
-" Search files in popup window
-nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
-
-" Grep project files in popup window
-nnoremap <silent> <leader>fg :<C-U>Leaderf rg --no-messages --popup<CR>
-
-" Search vim help files
-nnoremap <silent> <leader>fh :<C-U>Leaderf help --popup<CR>
-
-
-" Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
-" items.
-let g:Lf_CommandMap = {'<C-J>': ['<C-N>'], '<C-K>': ['<C-P>']}
-
-
-
-" should use `Leaderf gtags --update` first
-let g:Lf_GtagsAutoGenerate = 0
-let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
-
-" Ignore certain files and directories when searching files
-" set up working directory for git repository
-let g:Lf_WorkingDirectoryMode = 'a'
-
-let g:Lf_WildIgnore = {
-    \ 'dir': ['.git', '__pycache__', '.DS_Store'],
-    \ 'file': ['*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
-    \ '*.gif', '*.db', '*.tgz', '*.tar.gz', '*.zip', '*.bin', '*.pptx',
-    \ '*.xlsx', '*.docx', '*.pdf', '*.tmp', '*.wmv', '*.mkv', '*.mp4',
-    \ '*.rmvb']
-    \}
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Markdown
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" vim-markdown {{{
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_no_default_key_mappings = 1
-let g:tex_conceal = ''
-let g:vim_markdown_math = 0
-let g:vim_markdown_new_list_item_indent = 0
-
-let g:vim_markdown_frontmatter = 1  " for YAML format
-let g:vim_markdown_toml_frontmatter = 1  " for TOML format
-let g:vim_markdown_json_frontmatter = 1  " for JSON format
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Codeing
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" indentLine {{{
-
-let g:indentLine_enabled = 1
-let g:indentLine_char_list = ['|', '¦', '┆', '┊', '▏']
-
-if has('gui_running')
-    let g:indentLine_color_gui = '#A4E57E'
-else
-    let g:indentLine_color_term = 239
+if executable('rg')
+      set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case        
+      set grepformat=%f:%l:%c:%m
 endif
 
-"" }}}
+""默认垂直分割窗口进行对比,忽略空白字符
+set diffopt=
+set diffopt+=vertical         " show diff in vertical position
+set diffopt+=filler           " show filler for deleted lines
+set diffopt+=closeoff         " turn off diff when one file window is closed
+set diffopt+=context:3        " context for diff
+set diffopt+=internal,indent-heuristic,algorithm:histogram
 
-"" rainbow {{{
-
-let g:rainbow_active = 1 ""启用rainbow
-
-"" }}}
-
-
-"" ALE {{{
-
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_text_chaged = 'always'
-
-"" 自定义error和warning图标
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-
-"" 显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = '✖ '
-let g:ale_echo_msg_warning_str = '⚠ '
-let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
-
-"" 使用指定的Linter
-let g:ale_linters_explicit = 1
-let g:ale_linters = {'python': ['flake8'], 'vim': ['vint']}
-let g:ale_python_flake8_options="--ignore=E114,E116,E131 --max-line-length=120"
-let g:ale_fixers = {'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace']}
-
-"" 关闭本地列表,使用 quickfix
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-"" }}}
-
-"" Nercommenter {{{
-
-let g:NERDCompactSexyComs = 1 "" 美化多行注释
-let g:NERDSpaceDelims = 1     "" 注释符号后面自动加个空格
-
-" "}}}
-
-"" AsyncRun {{{
-
-let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 6
-let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
-let $PYTHONUNBUFFERED = 1  "" 看到 Python 实时输出
-
-"" }}}
-
-"" vista {{{
-
-let g:vista#renderer#icons = {
-      \ 'member': '',
-      \ }
-
-" Do not echo message on command line
-let g:vista_echo_cursor = 0
-" Stay in current window when vista window is opened
-let g:vista_stay_on_open = 0
-
-nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
-
-"" }}}
-
-"" LSP {{{
-"" }}}
