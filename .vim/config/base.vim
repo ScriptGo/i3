@@ -9,13 +9,13 @@ set guifont=Fira\ Code\ 12                      "" Linux字体设置
 """窗口设置
 
 if has('gui_running')
-   set guioptions-=T           "" 隐藏菜单和工具条
-   set guioptions-=L           "" 隐藏滚动条
+   set guioptions-=T                      "" 隐藏工具条
+   set guioptions-=L                      "" 隐藏滚动条
    set guioptions-=r
-   set title                   "" 标题栏显示的信息
+   set title                              "" 标题栏显示的信息
    set titlestring=%{hostname()}\ -\ %F
-   set showtabline=2           "" 显示标签页
-   set guitablabel=%N.\ %t     "" 为标签页添加数字
+   set showtabline=2                      "" 显示标签页
+   set guitablabel=%N.\ %t                "" 为标签页添加数字
    set guifontwide=Sarasa\ Mono\ SC\ 12
 endif
 
@@ -245,9 +245,9 @@ endif
 
 ""默认垂直分割窗口进行对比,忽略空白字符
 set diffopt=
-set diffopt+=vertical  " show diff in vertical position
-set diffopt+=filler  " show filler for deleted lines
-set diffopt+=closeoff  " turn off diff when one file window is closed
-set diffopt+=context:3  " context for diff
+set diffopt+=vertical         " show diff in vertical position
+set diffopt+=filler           " show filler for deleted lines
+set diffopt+=closeoff         " turn off diff when one file window is closed
+set diffopt+=context:3        " context for diff
 set diffopt+=internal,indent-heuristic,algorithm:histogram
 
