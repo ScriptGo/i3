@@ -9,6 +9,9 @@ set fileencoding=utf-8     "" 编辑及保存文件时使用的编码
 "" 自动识别文件编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,gbk,gb2312,big5,euc-jp,latin1
 
+set fileformats=unix,dos,mac        "" 文件格式
+set helplang=cn                     "" 中文帮助
+
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

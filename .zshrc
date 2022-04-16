@@ -27,6 +27,8 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 
+alias pip="python -m pip"
+
 alias -s gz="tar -xzvf"
 alias -s tgz="tar -xzvf"
 alias -s zip="unzaip"
@@ -38,5 +40,5 @@ alias -s bz2="tar -xjvf"
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 neofetch
-
+# eval "$(starship init zsh)"
 
