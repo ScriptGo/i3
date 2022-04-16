@@ -42,9 +42,16 @@ nnoremap <silent> <F6> :call asyncrun#quickfix_toggle(6)<CR>
 "" F8
 
 " 编辑vimrc相关配置文件
-nnoremap <leader>e :edit $MYVIMRC<cr>
-nnoremap <leader>vc :edit ~/.vimrc.custom.config<cr>
-nnoremap <leader>vp :edit ~/.vimrc.custom.plugins<cr>
+nnoremap <leader>e :edit $MYVIMRC<CR>
+nnoremap <leader>ev <C-w>s<C-w>j:e $MYVIMRC<cr>
+
+
+" Quick editing
+
+nnoremap <leader>es <C-w>s<C-w>j:e ~/.vim/snippets/<cr>
+nnoremap <leader>eg <C-w>s<C-w>j:e ~/.gitconfig<cr>
+nnoremap <leader>ez <C-w>s<C-w>j:e ~/.zshrc<cr>
+nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
 
 " 打开当前光标所在单词的vim帮助文档
 nnoremap <leader>H :execute ":help " . expand("<cword>")<cr>
@@ -97,6 +104,7 @@ nnoremap <leader>rc :%s/\<<C-r><C-w>\>/
 " Quit normal mode
 nnoremap <silent> <Leader>q  :q<CR>
 nnoremap <silent> <Leader>Q  :qa!<CR>
+
 " Move half page faster
 nnoremap <Leader>d  <C-d>
 nnoremap <Leader>u  <C-u>
@@ -113,15 +121,17 @@ nnoremap H ^
 nnoremap L $
 " Redo
 nnoremap U <C-r>
-" Quick command mode
-nnoremap <CR> :
+
+
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Yank to the end of line
 nnoremap Y y$
+
 " Auto indent pasted text
 " nnoremap p p=`]<C-o>
+
 " Open shell in vim
 if has('nvim') || has('terminal')
   map <silent> <Leader>' :terminal<CR>
@@ -133,66 +143,56 @@ nnoremap <silent> <Leader>sc :nohlsearch<CR>
 " Toggle pastemode
 nnoremap <silent> <Leader>tp :setlocal paste!<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" 移动
-" Insert mode shortcut
-inoremap <C-h> <BS>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
 
-" Bash like
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-d> <Delete>
+"" 插入模式 {{{
 
-""移动到行首/行尾
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+    "" 移动到行首/行尾
+    inoremap <C-a> <Home>
+    inoremap <C-e> <End>
+    inoremap <C-d> <Delete>
 
-""向左/右移动一个字符
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
+    "" 向左/右移动一个字符
+    inoremap <C-h> <Left>
+    inoremap <C-l> <Right>
 
-""向上/下直线移动一个字符(行)
-inoremap <C-k> <c-o>gk
-inoremap <C-j> <c-o>gj
+    "" 向上/下直线移动一个字符(行)
+    inoremap <C-k> <C-\><c-o>gk
+    inoremap <C-j> <C-\><c-o>gj
 
-""向左/右移动一个word
-inoremap <A-b> <C-o>b
-inoremap <A-f> <C-o>w
+    "" 向左/右移动一个word
+    inoremap <C-b> <C-\><C-o>b
+    inoremap <C-f> <C-\><C-o>w
 
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-" Treat long lines as break lines (useful when moving around in them)
-nmap j gj
-nmap k gk
-vmap j gj
-vmap k gk
+"" }}}
 
-" Command mode shortcut
-cnoremap <C-h> <BS>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-d> <Delete>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+"" 命令模式 {{{
+
+    cnoremap <C-a> <Home>
+    cnoremap <C-e> <End>
+    
+    cnoremap <C-h> <Left>
+    cnoremap <C-l> <Right>
+    
+    cnoremap <C-b> <Left>
+    cnoremap <C-f> <Right>
+    
+    cnoremap <C-d> <Delete>
+
+"" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ 编辑
 
-""向左/右删除一个字符(BS/Del)
+"" 向左/右删除一个字符(BS/Del)
 inoremap <A-h> <C-o>db
 
-""向左/右删除一个word
+"" 向左/右删除一个word
 inoremap <A-l> <C-o>dw
 
-""删除当前行
+"" 删除当前行
 inoremap <C-d> <C-o>dd
 
-""在当前行的下方/上方插入新行
+"" 在当前行的下方/上方插入新行
 if has('gui_running')
      inoremap <C-enter> <C-o>o
      inoremap <C-Down> <C-o>O
@@ -202,50 +202,40 @@ if has('gui_running')
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Windows
+"" Windows
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""切换
 
-nnoremap <A-H> <c-w>h
-nnoremap <A-L> <c-w>l
-nnoremap <A-J> <c-w>j
-nnoremap <A-K> <c-w>k
+" 窗口切换：ALT+SHIFT+hjkl
+" 传统的 CTRL+hjkl 移动窗口不适用于 vim 8.1 的终端模式，CTRL+hjkl 在
+" bash/zsh 及带文本界面的程序中都是重要键位需要保留，不能 tnoremap 的
 
-inoremap <A-H> <ESC><c-w>h
-inoremap <A-L> <ESC><c-w>l
-inoremap <A-J> <ESC><c-w>j
-inoremap <A-K> <ESC><c-w>k
+    nnoremap <A-H> <c-w>h
+    nnoremap <A-L> <c-w>l
+    nnoremap <A-J> <c-w>j
+    nnoremap <A-K> <c-w>k
 
-"终端下切换窗口
-tnoremap <C-h> <C-w><C-h>
-tnoremap <C-j> <C-w><C-j>
-tnoremap <C-k> <C-w><C-k>
-tnoremap <C-l> <C-w><C-l>
+    inoremap <A-H> <ESC><c-w>h
+    inoremap <A-L> <ESC><c-w>l
+    inoremap <A-J> <ESC><c-w>j
+    inoremap <A-K> <ESC><c-w>k
 
-
-nnoremap <Leader>ww <C-W>w
-nnoremap <Leader>wr <C-W>r
-nnoremap <Leader>wd <C-W>c
-nnoremap <Leader>wq <C-W>q
-nnoremap <Leader>wj <C-W>j
-nnoremap <Leader>wk <C-W>k
-nnoremap <Leader>wh <C-W>h
-nnoremap <Leader>wl <C-W>l
-nnoremap <Leader>wH <C-W>5<
-nnoremap <Leader>wL <C-W>5>
-nnoremap <Leader>wJ :resize +5<CR>
-nnoremap <Leader>wK :resize -5<CR>
-nnoremap <Leader>w= <C-W>=
-nnoremap <Leader>ws <C-W>s
-nnoremap <Leader>w- <C-W>s
-nnoremap <Leader>wv <C-W>v
-nnoremap <Leader>w\| <C-W>v
-nnoremap <Leader>w2 <C-W>v
-
+if has('terminal') && exists(':terminal') == 2 && has('patch-8.1.1')
+	" vim 8.1 支持 termwinkey ，不需要把 terminal 切换成 normal 模式
+	" 设置 termwinkey 为 CTRL 加减号（GVIM），有些终端下是 CTRL+?
+	" 后面四个键位是搭配 termwinkey 的，如果 termwinkey 更改，也要改
+	
+	set termwinkey=<c-_>
+	tnoremap <A-H> <c-_>h
+	tnoremap <A-L> <c-_>l
+	tnoremap <A-J> <c-_>j
+	tnoremap <A-K> <c-_>k
+	tnoremap <A-q> <c-\><c-n>
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""Tab
+"" Tab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Use Ctrl-Tab and Alt-Tab to switch tab
 map    <C-Tab>  :tabnext<CR>
 imap   <C-Tab>  <C-O>:tabnext<CR>
@@ -259,7 +249,7 @@ nnoremap <silent> <leader> tc :tabclose<CR>
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nnoremap <leader>tm :tabmove<CR>
 
-"""切换Tab
+"" 切换Tab
 
 noremap <silent> <leader>tn :tabnext<CR>
 noremap <silent> <leader>tp :tabprev<CR>
@@ -276,8 +266,9 @@ inoremap <silent><m-3> <ESC>:tabn 3<CR>
 " Tabs
 nnoremap ]t :tabn<cr>
 nnoremap [t :tabp<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""Buffer
+"" Buffer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """{{{
@@ -303,7 +294,7 @@ nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
 
 
-    " Buffer {
+" Buffer {
 
 nnoremap <silent> <Leader>bp :bprevious<CR>
 nnoremap <silent> <Leader>bn :bnext<CR>
@@ -312,13 +303,27 @@ nnoremap <silent> <Leader>bl :blast<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
 nnoremap <silent> <Leader>bk :bw<CR>
 
-    " }
+" }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ 插件按键配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+" Treat long lines as break lines (useful when moving around in them)
+nmap j gj
+nmap k gk
+vmap j gj
+vmap k gk
 " sane regexes
 nnoremap / /\v
 vnoremap / /\v
@@ -353,34 +358,13 @@ noremap <C-j>  <C-w>j
 noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
-" Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
 
 
-" Quick editing
-nnoremap <leader>ev <C-w>s<C-w>j:e $MYVIMRC<cr>
-nnoremap <leader>es <C-w>s<C-w>j:e ~/.vim/snippets/<cr>
-nnoremap <leader>eg <C-w>s<C-w>j:e ~/.gitconfig<cr>
-nnoremap <leader>ez <C-w>s<C-w>j:e ~/.zshrc<cr>
-nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
 
-
-nnoremap <leader>cp :let @" = expand("%")<cr>
 
 " Easy window split; C-w v -> vv, C-w - s -> ss
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
 
-" home and end line in command mode
-cnoremap <C-a>  <Home>
-cnoremap <C-e>  <End>
-
-
-
-" Terminal {{{
-" ESC to go to normal mode in terminal
-tnoremap <C-s> <C-\><C-n>
-" }}}
 

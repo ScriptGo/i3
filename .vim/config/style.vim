@@ -49,11 +49,11 @@ set laststatus=2           "" 总是显示状态栏
 set ruler                  "" 显示当前的行号列号
 set showcmd                "" 在状态栏显示正在输入的命令
 
-set statusline=%<[%f]                  "" 文件名
+set statusline=%<[%F]                  "" 文件名
 set statusline+=\ [%1*%M%*%n%R%H]      "" buffer 编号和状态
 set statusline+=\ [文件类型:\ %Y]                            
 set statusline+=\ [格式:\ %{&ff}\ \|\ 编码:\ %{(&fenc!=''?&fenc:&enc).(&bomb!=''?'\ With\ Bom':'\ No\ Bom')}]
-set statusline+=%=[当前光标所在:\ 第%l行,\ 第%c列\ 文件总计:\ %L行]
+set statusline+=%=[\ 第%l行,\ 第%c列\ 总计:\ %L行]
 
 "" }}}
 
