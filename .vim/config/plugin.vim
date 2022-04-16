@@ -59,12 +59,12 @@ call plug#begin('~/.vim/plugged')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" Coding {{{
+
     Plug 'rebolek/vim-red'
     Plug 'Yggdroot/indentLine', { 'for': ['python', 'vim', 'sh']}
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'
     Plug 'dense-analysis/ale'
-    Plug 'preservim/nerdcommenter'
     Plug 'tpope/vim-commentary'
     Plug 'tomtom/tcomment_vim'
     Plug 'skywind3000/asynctasks.vim'
@@ -77,9 +77,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/vim-vsnip-integ'
 
 "" }}}
 
@@ -102,16 +99,9 @@ filetype plugin indent on
 
 "" Fern {{{
 
-"" 打开vim是自动打开Fern
-augroup __fern__
-  au! *
-  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=25 -reveal=%<CR>
-augroup END
-
 "" 显示隐藏文件
 let g:fern#default_hidden=1
 let g:fern#renderer = 'nerdfont'
-
 
 "" 关闭默认按键绑定
 let g:fern#disable_default_mappings = 1
@@ -371,16 +361,10 @@ let g:ale_set_quickfix = 1
 
 "" }}}
 
-"" Nercommenter {{{
-
-let g:NERDCompactSexyComs = 1 "" 美化多行注释
-let g:NERDSpaceDelims = 1     "" 注释符号后面自动加个空格
-
-" "}}}
 
 "" AsyncRun {{{
 
-let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 6
+let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 8
 let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
 let $PYTHONUNBUFFERED = 1  "" 看到 Python 实时输出
 

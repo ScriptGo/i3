@@ -1,13 +1,5 @@
 scriptencoding utf-8
 
-"" TimeOut
-
-set timeout ttimeout     "" 打开功能键超时检测（终端下功能键为一串 ESC 开头的字符串）
-set timeoutlen=300       "" Time out on mappings
-set updatetime=300       "" Idle time to write swap and trigger CursorHold
-set ttimeoutlen=100      "" 功能键超时检测 50 毫秒
-set winaltkeys=no        "" alt键不映射到菜单栏
-
 "" 主leader绑定为 <Space>
 "" 副leader绑定为 ,
 
@@ -17,13 +9,14 @@ let g:maplocalleader=','
 "" 将 : 映射为 ;
 nnoremap ; :
 xnoremap ; :
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" 功能键配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""F1 废弃这个键，防止调出系统帮助
+"" F1 废弃这个键，防止调出系统帮助
 noremap <F1> <ESC>
 
-"""F2 普通模式下相对行号和绝对行号的切换
+"" F2 普通模式下相对行号和绝对行号的切换
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -33,20 +26,20 @@ function! NumberToggle()
 endfunc
 nnoremap <silent> <F2> :call NumberToggle()<CR>
 
-"""F3 显示/隐藏缩进线
+"" F3 显示/隐藏缩进线
 nnoremap <silent> <F3> :IndentLinesToggle<CR>:set list! lcs=tab:\\|\<Space><CR>
 
-"""F4 显示/隐藏 Fern
+"" F4 显示/隐藏 Fern
 nnoremap <silent> <F4> :Fern . -drawer -toggle -width=25 -reveal=%<CR>
 
-"""F5 AsyncRun
+"" F5 AsyncRun
 nnoremap <silent> <F5>  :AsyncRun -raw python %<CR>
 
-"""F6 打开QuickFix
+"" F6 打开QuickFix
 nnoremap <silent> <F6> :call asyncrun#quickfix_toggle(6)<CR>
 
-"""F7
-"""F8
+"" F7
+"" F8
 
 " 编辑vimrc相关配置文件
 nnoremap <leader>e :edit $MYVIMRC<cr>
@@ -101,56 +94,58 @@ inoremap ddt <C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <leader>rc :%s/\<<C-r><C-w>\>/
 
 
-        " Quit normal mode
-        nnoremap <silent> <Leader>q  :q<CR>
-        nnoremap <silent> <Leader>Q  :qa!<CR>
-        " Move half page faster
-        nnoremap <Leader>d  <C-d>
-        nnoremap <Leader>u  <C-u>
+" Quit normal mode
+nnoremap <silent> <Leader>q  :q<CR>
+nnoremap <silent> <Leader>Q  :qa!<CR>
+" Move half page faster
+nnoremap <Leader>d  <C-d>
+nnoremap <Leader>u  <C-u>
 
 
-        " jj | escaping
-        inoremap jj <Esc>
-        cnoremap jj <C-c>
-        " Quit visual mode
-        vnoremap v <Esc>
-        " Move to the start of line
-        nnoremap H ^
-        " Move to the end of line
-        nnoremap L $
-        " Redo
-        nnoremap U <C-r>
-        " Quick command mode
-        nnoremap <CR> :
-        " In the quickfix window, <CR> is used to jump to the error under the
-        " cursor, so undefine the mapping there.
-        autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-        " Yank to the end of line
-        nnoremap Y y$
-        " Auto indent pasted text
-        " nnoremap p p=`]<C-o>
-        " Open shell in vim
-        if has('nvim') || has('terminal')
-          map <silent> <Leader>' :terminal<CR>
-        else
-          map <silent> <Leader>' :shell<CR>
-        endif
-        " Search result highlight countermand
-        nnoremap <silent> <Leader>sc :nohlsearch<CR>
-        " Toggle pastemode
-        nnoremap <silent> <Leader>tp :setlocal paste!<CR>
+" jj | escaping
+inoremap jj <Esc>
+cnoremap jj <C-c>
+" Quit visual mode
+vnoremap v <Esc>
+" Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
+" Redo
+nnoremap U <C-r>
+" Quick command mode
+nnoremap <CR> :
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+" Yank to the end of line
+nnoremap Y y$
+" Auto indent pasted text
+" nnoremap p p=`]<C-o>
+" Open shell in vim
+if has('nvim') || has('terminal')
+  map <silent> <Leader>' :terminal<CR>
+else
+  map <silent> <Leader>' :shell<CR>
+endif
+" Search result highlight countermand
+nnoremap <silent> <Leader>sc :nohlsearch<CR>
+" Toggle pastemode
+nnoremap <silent> <Leader>tp :setlocal paste!<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ 移动
-        " Insert mode shortcut
-        inoremap <C-h> <BS>
-        inoremap <C-j> <Down>
-        inoremap <C-k> <Up>
-        inoremap <C-b> <Left>
-        inoremap <C-f> <Right>
-        " Bash like
-        inoremap <C-a> <Home>
-        inoremap <C-e> <End>
-        inoremap <C-d> <Delete>
+" Insert mode shortcut
+inoremap <C-h> <BS>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
+" Bash like
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Delete>
+
 ""移动到行首/行尾
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
@@ -176,11 +171,11 @@ nmap k gk
 vmap j gj
 vmap k gk
 
-        " Command mode shortcut
-        cnoremap <C-h> <BS>
-        cnoremap <C-j> <Down>
-        cnoremap <C-k> <Up>
-        cnoremap <C-d> <Delete>
+" Command mode shortcut
+cnoremap <C-h> <BS>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-d> <Delete>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
@@ -228,24 +223,24 @@ tnoremap <C-k> <C-w><C-k>
 tnoremap <C-l> <C-w><C-l>
 
 
-        nnoremap <Leader>ww <C-W>w
-        nnoremap <Leader>wr <C-W>r
-        nnoremap <Leader>wd <C-W>c
-        nnoremap <Leader>wq <C-W>q
-        nnoremap <Leader>wj <C-W>j
-        nnoremap <Leader>wk <C-W>k
-        nnoremap <Leader>wh <C-W>h
-        nnoremap <Leader>wl <C-W>l
-        nnoremap <Leader>wH <C-W>5<
-        nnoremap <Leader>wL <C-W>5>
-        nnoremap <Leader>wJ :resize +5<CR>
-        nnoremap <Leader>wK :resize -5<CR>
-        nnoremap <Leader>w= <C-W>=
-        nnoremap <Leader>ws <C-W>s
-        nnoremap <Leader>w- <C-W>s
-        nnoremap <Leader>wv <C-W>v
-        nnoremap <Leader>w\| <C-W>v
-        nnoremap <Leader>w2 <C-W>v
+nnoremap <Leader>ww <C-W>w
+nnoremap <Leader>wr <C-W>r
+nnoremap <Leader>wd <C-W>c
+nnoremap <Leader>wq <C-W>q
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wl <C-W>l
+nnoremap <Leader>wH <C-W>5<
+nnoremap <Leader>wL <C-W>5>
+nnoremap <Leader>wJ :resize +5<CR>
+nnoremap <Leader>wK :resize -5<CR>
+nnoremap <Leader>w= <C-W>=
+nnoremap <Leader>ws <C-W>s
+nnoremap <Leader>w- <C-W>s
+nnoremap <Leader>wv <C-W>v
+nnoremap <Leader>w\| <C-W>v
+nnoremap <Leader>w2 <C-W>v
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -310,12 +305,12 @@ nnoremap [b :bprev<cr>
 
     " Buffer {
 
-        nnoremap <silent> <Leader>bp :bprevious<CR>
-        nnoremap <silent> <Leader>bn :bnext<CR>
-        nnoremap <silent> <Leader>bf :bfirst<CR>
-        nnoremap <silent> <Leader>bl :blast<CR>
-        nnoremap <silent> <Leader>bd :bd<CR>
-        nnoremap <silent> <Leader>bk :bw<CR>
+nnoremap <silent> <Leader>bp :bprevious<CR>
+nnoremap <silent> <Leader>bn :bnext<CR>
+nnoremap <silent> <Leader>bf :bfirst<CR>
+nnoremap <silent> <Leader>bl :blast<CR>
+nnoremap <silent> <Leader>bd :bd<CR>
+nnoremap <silent> <Leader>bk :bw<CR>
 
     " }
 

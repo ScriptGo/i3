@@ -1,77 +1,56 @@
 scriptencoding utf-8
 
-"" 文件格式
-set fileformats=unix                            "" 文件格式
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""文本格式
+
+set fileformats=unix,dos,mac                    "" 文件格式
 set helplang=cn                                 "" 中文帮助
-set guifont=Fira\ Code\ 12                      "" Linux字体设置
 
-"""=============================================================================
-"""窗口设置
+"" 告诉Vim怎么处理东亚二义性宽度字符类，例如破折号、五角星符号等等,防止特殊符号无法正常显示
+set ambiwidth=double
 
+"" 允许在两个汉字之间断行，即使汉字之间没有出现空格
+set formatoptions+=m
 
-set fillchars=fold:\ ,vert:\|,stl:\ ,stlnc:\  ""在被分割的窗口间显示空白，便于阅读
+"" 合并两行中文时，不在中间加空格
+set formatoptions+=B
 
-set equalalways                       ""分割窗口时保持平衡
-set splitbelow splitright             ""分割出来的窗口位于当前窗口下边/右边
-set lazyredraw                        ""在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能
-set switchbuf=useopen,usetab,newtab   ""跳转会先复用已有文件的窗口，再复用已有标签，最后没有的话新建标签
-set signcolumn=yes                    ""始终显示列标记
-set nostartofline                     ""光标滚动后将光标保留在同一列中
-set scrolloff=3                       ""上下移动光标时，光标的上方或下方至少会保留显示的行数
-set sidescrolloff=5                   ""Keep at least 5 lines left/right
-set linespace=3                       ""行间距，如果默认值太小，代码会非常纠结
-set scrolljump=5                      ""lines to scroll when cursor leaves screen
-set synmaxcol=999                     "" stop syntax highlight after x lines for performance
-set textwidth=81                      ""设置行宽，即一行显示多少个字符。
-set wrapmargin=2                      ""指定折行处与编辑窗口的右边缘之间空出的字符数
-set cmdheight=2                       ""命令行的高度
-set cmdwinheight=5
-set winwidth=30
-set winminwidth=10
-set helpheight=12
-set previewheight=12
-set pumheight=12                    "补全列表中项目的个数
-
-"""=============================================================================
-"""文本格式化
- 
-
-set ambiwidth=double    ""告诉Vim怎么处理东亚二义性宽度字符类，例如破折号、五角星符号等等,防止特殊符号无法正常显示
-set formatoptions+=mM    ""允许在两个汉字之间断行，即使汉字之间没有出现空格
-set formatoptions+=B    ""合并两行中文时，不在中间加空格
-set formatoptions=1jqn     ""自动格式化
+"" 自动格式化
+set formatoptions=1jqn
 set breakindentopt = "shift:2,min:20"
-set backspace=indent,eol,start   ""
-set whichwrap+=<,>,h,l           ""设退格键和光标键跨越行边界
 
-set nowrap                  ""关闭自动折行
-set breakat=\ \	;:,!?       ""长行折行标记字符
-set linebreak               ""只有遇到在breakat指定的符号处（比如空格、连词号和其他标点符号），才折行。也就是说，不会在单词内部折行
-set showbreak=↳             ""设置set nowrap命令后, 对于超出屏幕范围的行, 会在边界显示↪
+"" 设退格键和光标键跨越行边界
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
 
-set iskeyword+=_,$,@,%,#,-  ""带有如下符号的单词不要被换行分割
+set nowrap                  "" 关闭自动折行
+set breakat=\ \	;:,!?       "" 长行折行标记字符
+set linebreak               "" 只有遇到在breakat指定的符号处（比如空格、连词号和其他标点符号），才折行。也就是说，不会在单词内部折行
+set showbreak=↳             "" 设置set nowrap命令后, 对于超出屏幕范围的行, 会在边界显示↪
 
-"""=============================================================================
-"""保存，备份，历史记录
+set iskeyword+=_,$,@,%,#,-  "" 带有如下符号的单词不要被换行分割
 
-set browsedir=buffer         ""设定文件浏览器目录为当前目录
-set autochdir                ""自动切换当前目录为当前文件所在的目录
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""保存，备份，历史记录
 
-set confirm                  ""修改只读文件时发出提示
-set autoread                 ""文件修改之后自动载入
-set autowrite                ""自动保存
+set browsedir=buffer         "" 设定文件浏览器目录为当前目录
+set autochdir                "" 自动切换当前目录为当前文件所在的目录
 
-set nobackup                 ""取消备份
-set noswapfile               ""关闭swap文件
+set confirm                  "" 修改只读文件时发出提示
+set autoread                 "" 文件修改之后自动载入
+set autowrite                "" 自动保存
 
-set undofile                 ""保留撤销记录
+set nobackup                 "" 取消备份
+set noswapfile               "" 关闭swap文件
+
+set undofile                 "" 保留撤销记录
 set undodir=~/.vim/undo
 set bufhidden=hide           "" 当buffer被丢弃的时候隐藏它
 set history=9999             "" 记住多少次历史操作记录数
 set viminfo^=%               "" Remember info about open buffers on close
 set viminfo+=!               "" 保存全局变量
 
-"""搜索替换
+"" 搜索替换
 
 set hlsearch      "" 搜索高亮
 set incsearch     "" 即时搜索
@@ -80,13 +59,13 @@ set smartcase     "" 有一个或一个以上大写字母时仍保持对大小�
 set nowrapscan    "" 禁止在搜索到文件两端时重新搜索
 set gdefault      "" 替换时，缺省启用g标志，即同一行里的所有匹配都会被替换
 
-"""括号匹配
+"" 括号匹配
 
 set showmatch       ""显示匹配的括号
 set matchtime=3     ""高亮匹配括号时间
 set matchpairs+=<:>,(:),{:},[:]     ""匹配括号的规则
 
-""""剪贴板
+"" 剪贴板
 
 if has('unnamedplus')    ""vim寄存器和系统剪贴板共享
   set clipboard& clipboard+=unnamedplus
@@ -94,8 +73,8 @@ else
   set clipboard& clipboard+=unnamed
 endif
 
-"""=============================================================================
-"""其他配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" 其他配置 {{{
 
 set hidden                     "" 可以在没有保存的情况下切换buffer，此时的修改由 vim 负责保存
 set report=0                   "" Don't report on line changes
@@ -105,8 +84,18 @@ set virtualedit=block          "" Virtual edit is useful for visual block edit
 set display=lastline           "" Show as much as possible of the last line
 set ttyfast                    "" Faster redrawing
 set ttymouse=xterm2
-"""=============================================================================
-"""编程相关配置
+
+"" }}}
+
+"" TimeOut {{{
+
+set timeout ttimeout     "" 打开功能键超时检测（终端下功能键为一串 ESC 开头的字符串）
+set timeoutlen=300       "" Time out on mappings
+set updatetime=300       "" Idle time to write swap and trigger CursorHold
+set ttimeoutlen=100      "" 功能键超时检测 50 毫秒
+set winaltkeys=no        "" alt键不映射到菜单栏
+
+"" }}}
 
 "" 缩进 {{{
 
@@ -173,23 +162,23 @@ endif
 """=============================================================================
 "" 自定义设置
 
-au BufNewFile,BufRead *.md          set ft=mkd tw=80 syntax=markdown
-au BufNewFile,BufRead *.markdown    set ft=mkd tw=80 syntax=markdown
 
-""" {{{
+"" {{{
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd BufNewFile,BufRead *.md          set ft=mkd tw=80 syntax=markdown
+    autocmd BufNewFile,BufRead *.markdown    set ft=mkd tw=80 syntax=markdown
 augroup END
 
-""" }}}
+"" }}}
 
 if executable('rg')
       set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case        
       set grepformat=%f:%l:%c:%m
 endif
 
-""默认垂直分割窗口进行对比,忽略空白字符
+"" 默认垂直分割窗口进行对比,忽略空白字符
 set diffopt=
 set diffopt+=vertical         " show diff in vertical position
 set diffopt+=filler           " show filler for deleted lines
