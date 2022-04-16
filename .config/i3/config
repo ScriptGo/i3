@@ -498,19 +498,17 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
 
-exec --no-startup-id variety
-
 # Make sure fonts are loaded right
 exec_always --no-startup-id xset +fp ~/.fonts/
 exec_always --no-startup-id xset fp rehash
 exec_always --no-startup-id xrdb ~/.Xresources
 
-# exec_always --no-startup-id sbxkb
-exec_always --no-startup-id ff-theme-util
-
 exec --no-startup-id start_conky_maia
-exec_always --no-startup-id fix_xcursor "Azenis"
-exec_always --no-startup-id setcursor "Azenis"
+exec --no-startup-id variety
+
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id setcursor
 
 exec --no-startup-id fcitx5 &
 
@@ -524,11 +522,11 @@ bindsym $mod+9 exec --no-startup-id betterlockscreen -l
 bindsym $mod+l   exec --no-startup-id rofi -modi drun   -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -modi window -show window
 
-
-bindsym $mod+z  exec --no-startup-id morc_menu
 bindsym $mod+a  exec --no-startup-id alacritty
-bindsym $mod+n  exec --no-startup-id alacritty -e ncmpcpp
 bindsym $mod+e  exec --no-startup-id pcmanfm
+bindsym $mod+j  exec --no-startup-id jupyter-qtconsole
+bindsym $mod+n  exec --no-startup-id alacritty -e ncmpcpp
+bindsym $mod+z  exec --no-startup-id morc_menu
 
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
