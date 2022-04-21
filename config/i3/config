@@ -421,7 +421,6 @@ assign [class="Joplin"]                   $WS3
 assign [class="typora"]                   $WS3
 assign [class="code-oss"]                 $WS3
 assign [class="gvim"]                     $WS3
-assign [class="jupyter-qtconsole"]        $WS3
 assign [class="(?i)Chrome"]               $WS4
 assign [class="mpv"]                      $WS5
 assign [title="htop"]                     $WS6
@@ -523,7 +522,6 @@ bindsym $mod+Tab exec --no-startup-id rofi -modi window -show window
 
 bindsym $mod+a  exec --no-startup-id alacritty
 bindsym $mod+e  exec --no-startup-id pcmanfm
-bindsym $mod+j  exec --no-startup-id jupyter-qtconsole
 bindsym $mod+n  exec --no-startup-id alacritty -e ncmpcpp
 bindsym $mod+z  exec --no-startup-id morc_menu
 

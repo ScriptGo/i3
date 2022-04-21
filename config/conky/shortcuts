@@ -61,7 +61,6 @@ ${color5}${stippled_hr}
 ${color2}Win + a : ${color1}${alignr}Terminal
 ${color2}Win + d : ${color1}${alignr}DoubleCommander
 ${color2}Win + e : ${color1}${alignr}Pcmanfm
-${color2}Win + j : ${color1}${alignr}JupyterQtConsole
 ${color2}Win + n : ${color1}${alignr}Ncmpcpp
 ${color2}Win + l : ${color1}${alignr}Rofi
 ${color2}Win + z : ${color1}${alignr}Morc_menu
