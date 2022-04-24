@@ -63,7 +63,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'othree/html5.vim',       { 'for': 'html' }
     Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
     Plug 'mattn/emmet-vim',        { 'for': [ 'html', 'css' ] }
-
+    Plug 'prettier/vim-prettier', {
+        \ 'do': 'npm install --frozen-lockfile --production',
+        \ 'for': ['css', 'less', 'scss', 'json', 'markdown', 'yaml', 'html'] }
+  
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,6 +90,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'rhysd/vim-lsp-ale'
 
 "" }}}
 
@@ -357,13 +361,21 @@ let g:rainbow_active = 1 ""启用rainbow
 "" ALE {{{
 
 let g:ale_fix_on_save = 1
+"" 始终显示列标记
+
 let g:ale_sign_column_always = 1
-let g:ale_lint_on_enter = 1
+
+"" 打开文件时不进行检查
+let g:ale_lint_on_enter = 0
+
 let g:ale_lint_on_text_chaged = 'always'
 
 "" 自定义error和warning图标
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
+
+"" 在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
 
 "" 显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = '✖ '
@@ -372,12 +384,25 @@ let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
 
 "" 使用指定的Linter
 let g:ale_linters_explicit = 1
-let g:ale_linters = {'vim': ['vint']}
-let g:ale_fixers = {}
+let g:ale_linters = {
+\   'vim': ['vim-language-server'],
+\   'sh': ['language_server'],
+\   'css': [],
+\}
+
 
 "" 关闭本地列表,使用 quickfix
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+
+"" sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+
+"" <Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"" <Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
 
 "" }}}
 
@@ -386,5 +411,13 @@ let g:ale_set_quickfix = 1
 let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 8
 let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
 
+
+"" }}}
+
+"" Lsp {{{
+
+"" vim-language-server
+"" bash-language-sever
+"" vscode-css-language-sever
 
 "" }}}
