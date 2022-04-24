@@ -38,10 +38,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'lilydjwg/colorizer'
     Plug 'gko/vim-coloresque'
-    Plug 'lifepillar/vim-colortemplate'
     Plug 'tpope/vim-surround'
     Plug 'liuchengxu/graphviz.vim'
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
     
@@ -51,22 +49,8 @@ call plug#begin('~/.vim/plugged')
 
 "" Markdown {{{
 
-    Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
-    Plug 'mzlogin/vim-markdown-toc',     { 'on': ['GenTocGFM', 'GenTocRedcarpet', 'GenTocGitLab', 'UpdateToc', 'RemoveToc'] }
+    Plug 'mzlogin/vim-markdown-toc',  { 'on': ['GenTocGFM', 'GenTocRedcarpet', 'GenTocGitLab', 'UpdateToc', 'RemoveToc'] }
 
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" Web {{{
-
-    Plug 'othree/html5.vim',       { 'for': 'html' }
-    Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-    Plug 'mattn/emmet-vim',        { 'for': [ 'html', 'css' ] }
-    Plug 'prettier/vim-prettier', {
-        \ 'do': 'npm install --frozen-lockfile --production',
-        \ 'for': ['css', 'less', 'scss', 'json', 'markdown', 'yaml', 'html'] }
-  
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,24 +58,21 @@ call plug#begin('~/.vim/plugged')
 "" Coding {{{
 
     Plug 'rebolek/vim-red'
-    Plug 'Yggdroot/indentLine', { 'for': ['vim', 'sh']}
+    Plug 'Yggdroot/indentLine', { 'for': ['vim', 'sh'] }
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'
     Plug 'dense-analysis/ale'
     Plug 'wfxr/minimap.vim'
-
-    Plug 'tpope/vim-commentary'
-    Plug 'tomtom/tcomment_vim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
-    Plug 'dradtke/vim-dap'
+
     
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'rhysd/vim-lsp-ale'
-
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,7 +178,6 @@ let g:matchup_matchparen_offscreen = {'method': 'popup'}
 
 "" }}}
 
-
 "" vim-easy-align {{{
 
 xnoremap <silent> ga <Plug>(EasyAlign)
@@ -213,125 +193,6 @@ vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
-"" }}}
-
-"" LeaderF {{{
-
-let g:Lf_ReverseOrder = 1
-let g:Lf_HideHelp = 1        "" don't show the help in normal mode
-let g:Lf_ShowHidden = 1      "" show dot files
-let g:Lf_UseCache = 0        "" Do not use cache file
-let g:Lf_UseMemoryCache = 0  "" Refresh each time we call leaderf
-let g:Lf_UseVersionControlTool = 0 " Do not use version control tool to list files under a directory since
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_PopupColorscheme = 'gruvbox_material'
-let g:Lf_DefaultMode = 'FullPath'  ""Only fuzzy-search files names
-let g:Lf_DefaultExternalTool = "rg" " Use rg as the default search tool
-
-" Popup window settings
-let w = float2nr(&columns * 0.8)
-if w > 140
-  let g:Lf_PopupWidth = 140
-else
-  let g:Lf_PopupWidth = w
-endif
-let g:Lf_PopupPosition = [0, float2nr((&columns - g:Lf_PopupWidth)/2)]
-
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
-let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-
-let g:Lf_ShortcutF = "<leader>f"
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
-nnoremap \ :Leaderf rg<Cr>
-
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-nnoremap <silent> <leader>fb :<C-U>Leaderf buffer --popup<CR>
-
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-nnoremap <silent> <leader>fr :<C-U>Leaderf mru --popup<CR>
-
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-nnoremap <silent> <leader>ft :<C-U>Leaderf bufTag --popup<CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-
-" search visually selected text literally
-xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-noremap go :<C-U>Leaderf! rg --recall<CR>
-
-" Search files in popup window
-nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
-
-" Grep project files in popup window
-nnoremap <silent> <leader>fg :<C-U>Leaderf rg --no-messages --popup<CR>
-
-" Search vim help files
-nnoremap <silent> <leader>fh :<C-U>Leaderf help --popup<CR>
-
-
-" Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
-" items.
-let g:Lf_CommandMap = {'<C-J>': ['<C-N>'], '<C-K>': ['<C-P>']}
-
-
-
-" should use `Leaderf gtags --update` first
-let g:Lf_GtagsAutoGenerate = 0
-let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
-
-" Ignore certain files and directories when searching files
-" set up working directory for git repository
-let g:Lf_WorkingDirectoryMode = 'a'
-
-let g:Lf_WildIgnore = {
-    \ 'dir': ['.git', '__pycache__', '.DS_Store'],
-    \ 'file': ['*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
-    \ '*.gif', '*.db', '*.tgz', '*.tar.gz', '*.zip', '*.bin', '*.pptx',
-    \ '*.xlsx', '*.docx', '*.pdf', '*.tmp', '*.wmv', '*.mkv', '*.mp4',
-    \ '*.rmvb']
-    \}
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Markdown
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" vim-markdown {{{
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_no_default_key_mappings = 1
-let g:tex_conceal = ''
-let g:vim_markdown_math = 0
-let g:vim_markdown_new_list_item_indent = 0
-
-let g:vim_markdown_frontmatter = 1  " for YAML format
-let g:vim_markdown_toml_frontmatter = 1  " for TOML format
-let g:vim_markdown_json_frontmatter = 1  " for JSON format
-
-"" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Web
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" emmet {{{
-
-    let g:user_emmet_mode = 'a'
-    let g:user_emmet_leader_key='<C-E>'
-  
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -361,8 +222,8 @@ let g:rainbow_active = 1 ""启用rainbow
 "" ALE {{{
 
 let g:ale_fix_on_save = 1
-"" 始终显示列标记
 
+"" 始终显示列标记
 let g:ale_sign_column_always = 1
 
 "" 打开文件时不进行检查
@@ -374,9 +235,6 @@ let g:ale_lint_on_text_chaged = 'always'
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
-"" 在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
-
 "" 显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = '✖ '
 let g:ale_echo_msg_warning_str = '⚠ '
@@ -385,9 +243,8 @@ let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
 "" 使用指定的Linter
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-\   'vim': ['vim-language-server'],
+\   'vim': ['language-server'],
 \   'sh': ['language_server'],
-\   'css': [],
 \}
 
 
@@ -418,6 +275,5 @@ let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
 
 "" vim-language-server
 "" bash-language-sever
-"" vscode-css-language-sever
 
 "" }}}
