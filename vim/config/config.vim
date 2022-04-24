@@ -181,7 +181,7 @@ augroup END
 "" }}}
 
 if executable('rg')
-      set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case        
+      set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --hidden
       set grepformat=%f:%l:%c:%m
 endif
 

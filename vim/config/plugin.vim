@@ -41,9 +41,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'lifepillar/vim-colortemplate'
     Plug 'tpope/vim-surround'
     Plug 'liuchengxu/graphviz.vim'
-    Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
     
 "" }}}
 
@@ -58,20 +58,30 @@ call plug#begin('~/.vim/plugged')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"" Web {{{
+
+    Plug 'othree/html5.vim',       { 'for': 'html' }
+    Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+    Plug 'mattn/emmet-vim',        { 'for': [ 'html', 'css' ] }
+
+"" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "" Coding {{{
 
     Plug 'rebolek/vim-red'
-    Plug 'Yggdroot/indentLine', { 'for': ['python', 'vim', 'sh']}
+    Plug 'Yggdroot/indentLine', { 'for': ['vim', 'sh']}
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'
     Plug 'dense-analysis/ale'
+    Plug 'wfxr/minimap.vim'
+
     Plug 'tpope/vim-commentary'
     Plug 'tomtom/tcomment_vim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'dradtke/vim-dap'
-    Plug 'liuchengxu/vista.vim'
-    Plug 'wfxr/minimap.vim'
     
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/vim-lsp'
@@ -310,6 +320,17 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Web
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"" emmet {{{
+
+    let g:user_emmet_mode = 'a'
+    let g:user_emmet_leader_key='<C-E>'
+  
+"" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Codeing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -351,9 +372,8 @@ let g:ale_echo_msg_format = ' [ %severity% : %code% ] %s [ %linter% ]'
 
 "" 使用指定的Linter
 let g:ale_linters_explicit = 1
-let g:ale_linters = {'python': ['flake8'], 'vim': ['vint']}
-let g:ale_python_flake8_options="--ignore=E114,E116,E131 --max-line-length=120"
-let g:ale_fixers = {'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace']}
+let g:ale_linters = {'vim': ['vint']}
+let g:ale_fixers = {}
 
 "" 关闭本地列表,使用 quickfix
 let g:ale_set_loclist = 0
@@ -361,29 +381,10 @@ let g:ale_set_quickfix = 1
 
 "" }}}
 
-
 "" AsyncRun {{{
 
 let g:asyncrun_open = 8    "" 自动打开 quickfix window ，高度为 8
 let g:asyncrun_bell = 1    "" 任务结束时候响铃提醒
-let $PYTHONUNBUFFERED = 1  "" 看到 Python 实时输出
 
-"" }}}
 
-"" vista {{{
-
-let g:vista#renderer#icons = {
-      \ 'member': '',
-      \ }
-
-" Do not echo message on command line
-let g:vista_echo_cursor = 0
-" Stay in current window when vista window is opened
-let g:vista_stay_on_open = 0
-
-nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
-
-"" }}}
-
-"" LSP {{{
 "" }}}
