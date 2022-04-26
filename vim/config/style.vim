@@ -11,8 +11,8 @@ if has('gui_running')
    set titlestring=%{hostname()}\ -\ %F
    set showtabline=2                      "" 显示标签页
    set guitablabel=[%N]\ %t               "" 为标签页添加数字
-   set guifont=Fira\ Code\ 12             "" Linux字体设置
-   set guifontwide=Sarasa\ Mono\ SC\ 12
+   set guifont=Fira\ Code\ 14             "" Linux字体设置
+   set guifontwide=Sarasa\ Mono\ SC\ 14
 endif
 
 "" }}}

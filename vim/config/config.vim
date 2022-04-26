@@ -174,8 +174,6 @@ endif
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
-    autocmd BufNewFile,BufRead *.md          set ft=mkd tw=80 syntax=markdown
-    autocmd BufNewFile,BufRead *.markdown    set ft=mkd tw=80 syntax=markdown
 augroup END
 
 "" }}}

@@ -16,6 +16,11 @@
 
 ## 字体
 
+```
+sudo pacman -S noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
+sudo pacman -S ttf-fira-code ttf-jetbrains-mono
+```
+
 更纱黑体是一种中文编程字体，支持在中文Windows系统的命令行窗口中使用。
 
 包含样式：
@@ -39,7 +44,11 @@
 
 ## Icons
 
-Material Design Icons Regular
+```
+sudo pacman -S awesome-terminal-fonts ttf-font-awesome
+sudo pacman -S nerd-fonts-fira-code nerd-fonts-jetbrains-mono
+sudo pacman -S ttf-material-design-icons-webfont
+```
 
 | 描述   | icons  |
 | ----- | ------ |
@@ -80,16 +89,3 @@ Material Design Icons Regular
 󰯠󰢻
 
 󱀅󰸖
-
-
-
-
-
-
-
-
-
-**详细配置请参考以下文件:**
-
-- [基本配置](./基本配置.md)
-- [开发环境](./开发环境.md)
