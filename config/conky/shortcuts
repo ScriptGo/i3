@@ -72,7 +72,6 @@ ${color5}${stippled_hr}
 
 ${color1}Windows
 ${color5}${stippled_hr}
-${color2}Win + t   :${color1}${alignr}标签布局
 ${color2}Win + w   :${color1}${alignr}切换布局
 ${color2}Win + Tab : ${color1}${alignr}切换窗口
 ${color2}Win + f : ${color1}${alignr}全屏

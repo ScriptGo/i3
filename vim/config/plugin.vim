@@ -42,13 +42,37 @@ call plug#begin('~/.vim/plugged')
     Plug 'liuchengxu/graphviz.vim'
     Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
-    
+
+"" }}}
+
+"" 文本对象 {{{
+
+    	" 基础插件：提供让用户方便的自定义文本对象的接口
+	Plug 'kana/vim-textobj-user'
+
+	" indent 文本对象：ii/ai 表示当前缩进，vii 选中当缩进，cii 改写缩进
+	Plug 'kana/vim-textobj-indent'
+
+	" 语法文本对象：iy/ay 基于语法的文本对象
+	Plug 'kana/vim-textobj-syntax'
+
+	" 函数文本对象：if/af 支持 c/c++/vim/java
+	Plug 'kana/vim-textobj-function', { 'for':['vim'] }
+
+	" 参数文本对象：i,/a, 包括参数或者列表元素
+	Plug 'sgur/vim-textobj-parameter'
+
+	" 提供 uri/url 的文本对象，iu/au 表示
+	Plug 'jceb/vim-textobj-uri'
+	
 "" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" Markdown {{{
 
+    " 表格对齐，使用命令 Tabularize
+    Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
     Plug 'mzlogin/vim-markdown-toc',  { 'on': ['GenTocGFM', 'GenTocRedcarpet', 'GenTocGitLab', 'UpdateToc', 'RemoveToc'] }
 
 "" }}}
@@ -228,8 +252,8 @@ let g:ale_sign_column_always = 1
 
 "" 打开文件时不进行检查
 let g:ale_lint_on_enter = 0
-
-let g:ale_lint_on_text_chaged = 'always'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_chaged = 'normal'
 
 "" 自定义error和warning图标
 let g:ale_sign_error = '✖'

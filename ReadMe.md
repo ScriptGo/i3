@@ -21,6 +21,26 @@ sudo pacman -S noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
 sudo pacman -S ttf-fira-code ttf-jetbrains-mono
 ```
 
+术语
+mono：即 Monospaced，等宽字体
+sans：即 Sans-Serif，无衬线体
+gothic：哥特体，即无衬线体
+bold：粗体
+italic：斜体
+bolditalic：加粗斜体
+regular：常规体
+ligature：连体字符，举例来说，会把 != 变成 ≠
+
+
+
+Noto Color Emoji       等宽字体
+Material Design Icons  等宽字体
+font-awesome-extension 等宽字体
+
+JetBrains Mono 等宽
+Fira Code 等宽
+JetBrainsMono Nerd Font     等宽字体
+
 更纱黑体是一种中文编程字体，支持在中文Windows系统的命令行窗口中使用。
 
 包含样式：
@@ -35,7 +55,7 @@ sudo pacman -S ttf-fira-code ttf-jetbrains-mono
 
 包含汉字字形：
 
-- CL：传统字形
+- CL：传统字形，《康熙字典》字形
 - SC：简体中文
 - TC：台湾繁体中文
 - J：日文

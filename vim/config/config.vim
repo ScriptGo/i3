@@ -120,11 +120,11 @@ set autoindent
 
 "" 折叠 {{{
 if has('folding')
-    set foldenable               ""允许代码折叠
-    set foldmethod=indent        ""默认使用缩进折叠
-    set foldlevel=99             ""默认打开所有缩进
-    set foldcolumn=1             ""折叠区域的宽度
-    set foldexpr=1               ""代码块折叠后显示的行数
+    set foldenable               "" 允许代码折叠
+    set foldmethod=indent        "" 默认使用缩进折叠
+    set foldlevel=99             "" 默认打开所有缩进
+    set foldcolumn=1             "" 折叠区域的宽度
+    set foldexpr=1               "" 代码块折叠后显示的行数
 endif
 " 新建的文件，刚打开的文件不折叠
 autocmd! BufNewFile,BufRead * setlocal nofoldenable
@@ -182,12 +182,3 @@ if executable('rg')
       set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --hidden
       set grepformat=%f:%l:%c:%m
 endif
-
-"" 默认垂直分割窗口进行对比,忽略空白字符
-set diffopt=
-set diffopt+=vertical         " show diff in vertical position
-set diffopt+=filler           " show filler for deleted lines
-set diffopt+=closeoff         " turn off diff when one file window is closed
-set diffopt+=context:3        " context for diff
-set diffopt+=internal,indent-heuristic,algorithm:histogram
-

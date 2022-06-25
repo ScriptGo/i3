@@ -11,8 +11,8 @@ if has('gui_running')
    set titlestring=%{hostname()}\ -\ %F
    set showtabline=2                      "" 显示标签页
    set guitablabel=[%N]\ %t               "" 为标签页添加数字
-   set guifont=Fira\ Code\ 14             "" Linux字体设置
-   set guifontwide=Sarasa\ Mono\ SC\ 14
+   set guifont=FiraCode\ Nerd\ Font\ Mono\ 12             "" Linux字体设置
+   set guifontwide=Sarasa\ Mono\ SC\ 12
 endif
 
 "" }}}
@@ -22,20 +22,20 @@ endif
 
 set fillchars=fold:\ ,vert:\|,stl:\ ,stlnc:\  ""在被分割的窗口间显示空白，便于阅读
 
-set equalalways                       ""分割窗口时保持平衡
-set splitbelow splitright             ""分割出来的窗口位于当前窗口下边/右边
-set lazyredraw                        ""在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能
-set switchbuf=useopen,usetab,newtab   ""跳转会先复用已有文件的窗口，再复用已有标签，最后没有的话新建标签
-set signcolumn=yes                    ""始终显示列标记
-set nostartofline                     ""光标滚动后将光标保留在同一列中
-set scrolloff=3                       ""上下移动光标时，光标的上方或下方至少会保留显示的行数
-set sidescrolloff=5                   ""Keep at least 5 lines left/right
-set linespace=3                       ""行间距，如果默认值太小，代码会非常纠结
-set scrolljump=5                      ""lines to scroll when cursor leaves screen
+set equalalways                       "" 分割窗口时保持平衡
+set splitright                        "" 水平切割窗口时，默认在右边显示新窗口
+set lazyredraw                        "" 在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能
+set switchbuf=useopen,usetab,newtab   "" 跳转会先复用已有文件的窗口，再复用已有标签，最后没有的话新建标签
+set signcolumn=yes                    "" 始终显示列标记
+set nostartofline                     "" 光标滚动后将光标保留在同一列中
+set scrolloff=3                       "" 上下移动光标时，光标的上方或下方至少会保留显示的行数
+set sidescrolloff=5                   "" Keep at least 5 lines left/right
+set linespace=3                       "" 行间距，如果默认值太小，代码会非常纠结
+set scrolljump=5                      "" lines to scroll when cursor leaves screen
 set synmaxcol=999                     "" stop syntax highlight after x lines for performance
-set textwidth=81                      ""设置行宽，即一行显示多少个字符。
-set wrapmargin=2                      ""指定折行处与编辑窗口的右边缘之间空出的字符数
-set cmdheight=2                       ""命令行的高度
+set textwidth=81                      "" 设置行宽，即一行显示多少个字符。
+set wrapmargin=2                      "" 指定折行处与编辑窗口的缘之间空出的字符数
+set cmdheight=2                       "" 命令行的高度
 set cmdwinheight=5
 set helpheight=12
 set previewheight=12
@@ -88,7 +88,7 @@ autocmd InsertLeave * :set relativenumber
 "" 高亮
 
 set cursorline                    "" 高亮当前行
-set colorcolumn=80                "" 高亮显示第80列
+set colorcolumn=79                "" 高亮显示第79列
 autocmd InsertLeave * se nocul    "" 用浅色显示当前行
 autocmd InsertEnter * se cul      "" 用浅色高亮当前行
 
@@ -134,6 +134,20 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
 " 修正补全目录的色彩：默认太难看
 hi! Pmenu guibg=gray guifg=black ctermbg=gray ctermfg=black
 hi! PmenuSel guibg=gray guifg=brown ctermbg=brown ctermfg=gray
+
+"----------------------------------------------------------------------
+" 终端设置，隐藏行号和侧边栏
+"----------------------------------------------------------------------
+if has('terminal') && exists(':terminal') == 2
+	if exists('##TerminalOpen')
+		augroup VimUnixTerminalGroup
+			au! 
+			au TerminalOpen * setlocal nonumber signcolumn=no
+		augroup END
+	endif
+endif
+
+
 
 "----------------------------------------------------------------------
 " quickfix 设置，隐藏行号
